@@ -80,7 +80,8 @@ body {
   width: 100%;
   max-width: 1200px;
   flex-shrink: 0;
-  height: 80vh;
+  height: 88vh;
+  max-height: 580px;
   box-sizing: border-box;
   padding: 40px;
 }
@@ -89,15 +90,17 @@ body {
   background: rgba(255, 255, 255, 0.32);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.32);
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   border-radius: 16px;
   border: 2px solid rgba(255, 255, 255, 0.8);
 }
 
 .hero {
   display: flex;
+  align-items: center;
   gap: 40px;
-  padding: 40px;
+  padding: 24px 40px;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .hero_img {
@@ -106,8 +109,7 @@ body {
 
 .hero_textarea {
   width: 48%;
-  padding-top: 24px;
-  padding-right: 24px;
+  min-width: 400px;
 }
 
 .hero_logo {
@@ -131,6 +133,7 @@ body {
 
 .onboarding {
   display: flex;
+  height: 100%;
   gap: 40px;
 }
 
