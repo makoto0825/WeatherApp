@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* nav-menu 仮置き　ここから */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #333; 
+    z-index: 10; 
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px; 
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white; 
+}
+/* nav-menu 仮置き　ここまで */
+
+#hero-image {
+    position: relative; 
+    left: 0;
+    width: 100%;
+    top: 50px;
+    height: calc(100vh - 50px); 
+    background-image: url('./images/original-8e9ccf313821d00b6e9cc23cd13b1aa8.png'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.weather-timeline {
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    justify-content: space-around;
+}
+
+.weather-widget {
+    padding-top: 60px; 
+    text-align: center;
+}
+
+.weather-item {
+    flex: 1;
+    text-align: center;
+}
+
+
