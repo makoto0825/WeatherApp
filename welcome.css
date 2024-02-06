@@ -1,0 +1,162 @@
+/* Common */
+html {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+body {
+  margin: 0;
+  background-color: #fcebff;
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 700;
+}
+
+.button {
+  border: none;
+  background: none;
+  border-radius: 24px;
+  font-size: 16px;
+  height: 48px;
+  padding: 0 24px;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+}
+
+.button.primary {
+  color: #fff;
+  background-image: linear-gradient(to bottom right, #dc63e5 0%, #5164f0 100%);
+  background-size: 160% 160%;
+  transition: all 0.2s ease-out;
+  background-position: center;
+}
+
+.button.primary:hover {
+  background-position: 80% 80%;
+}
+
+/* Welcome */
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+  height: 100vh;
+}
+
+.blob {
+  width: 40%;
+  max-width: 400px;
+  fill: #dc63e5;
+  position: absolute;
+  top: 36%;
+  left: 64%;
+  opacity: 0.4;
+}
+
+.slider {
+  display: flex;
+  gap: 80px;
+  overflow: scroll;
+  padding: 40px calc(50vw - 600px);
+}
+
+.slider_item {
+  width: 100%;
+  max-width: 1200px;
+  flex-shrink: 0;
+  height: 80vh;
+  box-sizing: border-box;
+  padding: 40px;
+}
+
+.glass-box {
+  background: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.32);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.hero {
+  display: flex;
+  gap: 40px;
+}
+
+.hero_img {
+  width: 46%;
+}
+
+.hero_textarea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+  padding-right: 24px;
+}
+
+.hero_logo {
+  color: #5164f0;
+  margin: 0;
+}
+
+.hero_copy {
+  font-size: 48px;
+  line-height: 1.2;
+  margin: 12px 0 24px;
+
+  span {
+    display: block;
+  }
+}
+
+.hero_info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero_button {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.onboarding {
+  display: flex;
+  gap: 40px;
+}
+
+.onboarding_img {
+  width: 46%;
+}
+
+.onboarding_textarea {
+  flex: 1;
+}
+
+.onboarding_title {
+  font-size: 32px;
+  margin: 0 0 24px;
+}
+
+.onboarding_next {
+  margin-right: 0;
+  margin-left: auto;
+}
