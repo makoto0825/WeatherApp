@@ -97,16 +97,15 @@ body {
 .hero {
   display: flex;
   gap: 40px;
+  padding: 40px;
 }
 
 .hero_img {
-  width: 46%;
+  flex: 1;
 }
 
 .hero_textarea {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  width: 48%;
   padding-top: 24px;
   padding-right: 24px;
 }
@@ -126,16 +125,8 @@ body {
   }
 }
 
-.hero_info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 .hero_button {
-  margin-right: 0;
-  margin-left: auto;
+  margin-top: 24px;
 }
 
 .onboarding {
