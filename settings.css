@@ -1,0 +1,133 @@
+/* reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Common */
+html {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+body {
+  margin: 0;
+  background-color: #fcebff;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: #9969ed;
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 40px;
+}
+
+.title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 700;
+}
+
+.title.page-title {
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.button {
+  border: none;
+  background: none;
+  border-radius: 24px;
+  font-size: 16px;
+  min-width: 160px;
+  height: 48px;
+  padding: 0 24px;
+  cursor: pointer;
+}
+
+.button.primary {
+  color: #fff;
+  background-image: linear-gradient(to bottom right, #dc63e5 0%, #5164f0 100%);
+  background-size: 160% 160%;
+  transition: all 0.2s ease-out;
+  background-position: center;
+}
+
+.button.primary:hover {
+  background-position: 80% 80%;
+}
+
+.button.white {
+  background-color: #fff;
+  color: #9969ed;
+  box-shadow: 0 4px 16px rgba(31, 38, 135, 0.1);
+  transition: all 0.2s ease-out;
+}
+
+.button.white:hover {
+  background-color: color-mix(in srgb, #9969ed 16%, #fff 84%);
+}
+
+.text-button {
+  outline: none;
+  background: none;
+  border: none;
+  color: #9969ed;
+  font-weight: 600;
+}
+
+.text-button:hover {
+  text-decoration: underline;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #9969ed;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  color: #9969ed;
+  font-weight: bold;
+  transition: all 0.2s ease-out;
+}
+
+.icon-button:hover {
+  background-color: color-mix(in srgb, #9969ed 16%, #fff 84%);
+}
+
+/* Settings Page */
+.page-wrapper {
+  padding: 40px;
+}
+
+.setting-wrapper {
+  display: flex;
+  align-items: flex-start;
+}
+
+.setting_image {
+  width: 320px;
+}
