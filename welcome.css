@@ -219,8 +219,13 @@ a {
   gap: 8px;
 }
 
-.onboarding_next {
-  display: block;
-  margin-right: 0;
-  margin-left: auto;
+.onboarding_step-controller {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.toggle-switch {
+  margin: 24px 0;
 }

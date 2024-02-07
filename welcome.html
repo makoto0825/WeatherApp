@@ -29,7 +29,7 @@
         <section class="slider_item">
           <div class="slide glass-box">
             <div class="hero_img">
-              <img src="./images/hero.svg" alt="" />
+              <img src="./images/welcome/hero.svg" alt="" />
             </div>
             <div class="hero_textarea">
               <h1 class="hero_logo">WeatherApp</h1>
@@ -52,7 +52,7 @@
           <div class="slide glass-box onboarding">
             <img
               class="onboarding_img"
-              src="./images/current_location.svg"
+              src="./images/welcome/location.svg"
               alt=""
             />
             <div class="onboarding__textarea">
@@ -68,9 +68,38 @@
                 <button class="icon-button" type="button">?</button>
               </div>
               <p>or <button class="text-button">Select Manually</button></p>
-              <button class="button primary onboarding_next" type="button">
-                Next
-              </button>
+              <div class="onboarding_step-controller">
+                <button class="button primary" type="button">Next</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="slider_item">
+          <div class="slide glass-box onboarding">
+            <img
+              class="onboarding_img"
+              src="./images/welcome/fashion.svg"
+              alt=""
+            />
+            <div class="onboarding__textarea">
+              <h2 class="onboarding_title">Define Your Fashion Mode</h2>
+              <p class="onboarding__text">
+                Choose casual or formal mode to personalize your fashion
+                experience. <br />
+                Step into outfits that match your vibe effortlessly!
+              </p>
+              <div class="toggle-switch">
+                <span>Casual</span>
+                <label class="toggle-switch_label">
+                  <input class="hidden-checkbox" type="checkbox" />
+                  <span class="">WIP</span>
+                </label>
+                <span>Formal</span>
+              </div>
+              <div class="onboarding_step-controller">
+                <button type="button" class="text-button">Back</button>
+                <button class="button primary" type="button">Start</button>
+              </div>
             </div>
           </div>
         </section>
