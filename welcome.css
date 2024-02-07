@@ -15,6 +15,7 @@ html {
 body {
   margin: 0;
   background-color: #fcebff;
+  color: #372f2f;
 }
 
 button {
@@ -38,9 +39,9 @@ a {
   margin: 0 auto;
 }
 
-.title {
-  font-family: "Barlow Condensed", sans-serif;
-  font-weight: 700;
+.font-title {
+  font-family: "Mochiy Pop One", sans-serif;
+  font-weight: 400;
 }
 
 .button {
@@ -179,9 +180,9 @@ a {
 }
 
 .hero_copy {
-  font-size: 48px;
-  line-height: 1.2;
-  margin: 12px 0 24px;
+  font-size: 36px;
+  line-height: 1.4;
+  margin: 0 0 24px;
 
   span {
     display: block;
