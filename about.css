@@ -1,8 +1,10 @@
-
+html {
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
 body{
     background-color: #fcebff;
-    /* background: rgb(237, 235, 235); */
-    /* background: rgb(222, 243, 249); */
     padding: 2%;
 }
 h1{ font-size: clamp(2.125rem, 1.768rem + 1.79vw, 4rem);
@@ -47,20 +49,16 @@ ul li div{
     color: white;
     margin: 20px 60px;
     padding: 10px;
-    font-size: clamp(0.938rem, 0.759rem + 0.89vw, 1.875rem);
+    font-size: clamp(0.875rem, 0.722rem + 0.82vw, 2rem);
     font-weight: 500;
 }
 .fontMochiy-pop {
     font-family: "Mochiy Pop One", sans-serif;
     font-weight: 400;
   }
-  .fontPoppins {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-  }
+
 
   @media (max-width: 768px) {
-    /* 横幅が768px以下の場合に適用するスタイル */
     h1{ 
         text-align: center;
     }
