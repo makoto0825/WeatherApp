@@ -10,6 +10,9 @@ html {
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
   line-height: 1.6;
+  @media screen and (max-width: 835px) {
+    font-size: 14px;
+  }
 }
 
 body {
@@ -25,6 +28,15 @@ button {
 
 a {
   color: #9969ed;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
 }
 
 .visible {
@@ -44,15 +56,24 @@ a {
   font-weight: 400;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .button {
   border: none;
   background: none;
-  border-radius: 24px;
+  border-radius: 80px;
   font-size: 16px;
   min-width: 160px;
   height: 48px;
   padding: 0 24px;
   cursor: pointer;
+
+  @media screen and (max-width: 835px) {
+    height: 40px;
+    font-size: 14px;
+  }
 }
 
 .button.primary {
@@ -70,8 +91,9 @@ a {
 .button.white {
   background-color: #fff;
   color: #9969ed;
-  box-shadow: 0 4px 16px rgba(31, 38, 135, 0.1);
   transition: all 0.2s ease-out;
+  border: 2px solid #9969ed;
+  font-weight: 500;
 }
 
 .button.white:hover {
@@ -96,7 +118,6 @@ a {
   outline: none;
   cursor: pointer;
   border-radius: 50%;
-  border: 2px solid #9969ed;
   width: 24px;
   height: 24px;
   display: flex;
@@ -114,11 +135,13 @@ a {
 
 /* Welcome */
 .page-wrapper {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  align-items: center;
-  height: 100vh;
+  @media screen and (min-width: 836px) {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    height: 100vh;
+  }
 }
 
 .blob {
@@ -126,26 +149,43 @@ a {
   max-width: 400px;
   fill: #dc63e5;
   position: absolute;
-  top: 36%;
+  bottom: 8%;
   left: 64%;
   opacity: 0.4;
 }
 
 .slider {
   display: flex;
-  gap: 80px;
   overflow: scroll;
-  padding: 40px calc(50vw - 600px);
+  scroll-snap-type: x mandatory;
 }
 
 .slider_item {
-  width: 100%;
-  max-width: 1200px;
-  flex-shrink: 0;
-  height: 88vh;
-  max-height: 580px;
+  width: 100vw;
+  height: 100vh;
   box-sizing: border-box;
-  padding: 40px;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+.slide {
+  width: clamp(320px, 88%, 1120px);
+  height: clamp(360px, calc(100% - 40px), 520px);
+  padding: 24px 40px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+
+  @media screen and (max-width: 835px) {
+    width: clamp(280px, calc(100% - 48px), 360px);
+    height: 584px;
+    display: block;
+    padding: 40px 32px;
+  }
 }
 
 .glass-box {
@@ -156,40 +196,63 @@ a {
   border: 2px solid rgba(255, 255, 255, 0.8);
 }
 
-.slide {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  padding: 24px 40px;
-  height: 100%;
-  box-sizing: border-box;
-}
-
-.hero_img {
+.slide_img {
   flex: 1;
   text-align: center;
+
+  @media screen and (max-width: 835px) {
+    width: 160px;
+    margin: 0 auto 24px;
+  }
 }
 
-.hero_img img {
+.slide_img img {
   width: 100%;
   max-width: 320px;
   height: auto;
 }
 
-.hero_textarea {
-  width: 48%;
-  min-width: 400px;
+.slide_textarea {
+  width: clamp(400px, 48%, 48%);
+
+  @media screen and (max-width: 835px) {
+    width: 240px;
+    margin: 0 auto;
+  }
+}
+
+.slide_textarea.large {
+  width: clamp(400px, 64%, 64%);
+
+  @media screen and (max-width: 835px) {
+    width: 264px;
+    margin: 0 auto;
+  }
+}
+
+.slide_text {
+  text-wrap: balance;
 }
 
 .hero_logo {
   color: #5164f0;
   margin: 0;
+  font-size: 24px;
+
+  @media screen and (max-width: 835px) {
+    font-size: 16px;
+  }
 }
 
 .hero_copy {
   font-size: 36px;
   line-height: 1.4;
-  margin: 0 0 24px;
+  margin-bottom: 24px;
+
+  @media screen and (max-width: 835px) {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
 
   span {
     display: block;
@@ -198,40 +261,39 @@ a {
 
 .hero_button {
   margin-top: 24px;
-}
 
-.onboarding {
-  display: flex;
-  height: 100%;
-  gap: 40px;
-}
-
-.onboarding_img {
-  width: 46%;
-  text-align: center;
-}
-
-.onboarding_img img {
-  max-width: 264px;
-  width: 100%;
-  height: auto;
-}
-
-.onboarding_textarea {
-  flex: 1;
+  @media screen and (max-width: 835px) {
+    margin: 32px 0 0 auto;
+    display: block;
+  }
 }
 
 .onboarding_title {
   font-size: 32px;
-  line-height: 1;
+  line-height: 1.4;
   margin: 0 0 24px;
+  @media screen and (max-width: 835px) {
+    font-size: 24px;
+  }
 }
 
-.onboarding_buttons {
-  margin: 8px 0;
+.location-button-area {
+  margin: 24px 0 8px;
   display: flex;
   align-items: center;
   gap: 8px;
+
+  @media screen and (max-width: 835px) {
+    justify-content: center;
+    padding-left: 24px;
+  }
+}
+
+.location-text {
+  @media screen and (max-width: 835px) {
+    text-align: center;
+    padding-right: 8px;
+  }
 }
 
 .onboarding_step-controller {
@@ -239,6 +301,10 @@ a {
   align-items: center;
   justify-content: flex-end;
   gap: 16px;
+
+  @media screen and (max-width: 835px) {
+    margin-top: 32px;
+  }
 }
 
 .toggle-switch {
