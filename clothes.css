@@ -1,20 +1,21 @@
+html{
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.6;
+}
 body{
-    background: rgb(254, 252, 243);
-    /* background: rgb(237, 235, 235); */
-    /* background: rgb(222, 243, 249); */
+    background-color: #fcebff;
     padding: 2%;
 }
-
 h1{
     text-align: center;
-    font-size: clamp(2.125rem, 1.768rem + 1.79vw, 4rem);
-    color: #6A00AA;
-    margin-bottom: 10%;
+    font-size: clamp(2.125rem, 1.768rem + 1.79vw, 3rem);
+    color: #372f2f;
+    margin-bottom: 5%;
 }
 .content{
     margin: 0 auto;
     padding: 1%;
-    background: linear-gradient(to bottom right,rgb(217, 149, 232), rgb(128, 57, 243));
+    background: linear-gradient(to bottom right, #dc63e5 0%, #5164f0 100%);
     width: clamp(18.75rem, 10.417rem + 41.67vw, 62.5rem);
     height: clamp(38.5rem, 27.976rem + 52.62vw, 93.75rem);
     border-radius: 30px;
@@ -26,22 +27,16 @@ h2{
     margin-bottom: 5%;
     font-size: clamp(1.563rem, 1.384rem + 0.89vw, 2.5rem);
 }
-
 p{  margin: 5% auto;
     text-align: left;
     color: white;
     width: 80%;
     font-size: clamp(0.938rem, 0.759rem + 0.89vw, 1.875rem);
 }
-
 .fontMochiy-pop {
     font-family: "Mochiy Pop One", sans-serif;
     font-weight: 400;
-  }
-.fontPoppins {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-  }
+}
 #clothesImg{
     width: 80%;
     margin-bottom: 8%;
