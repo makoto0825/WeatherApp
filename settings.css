@@ -15,6 +15,7 @@ html {
 body {
   margin: 0;
   background-color: #fcebff;
+  color: #372f2f;
 }
 
 button {
@@ -40,14 +41,15 @@ a {
   padding: 0 40px;
 }
 
-.title {
-  font-family: "Barlow Condensed", sans-serif;
+.font-title {
+  font-family: "Mochiy Pop One", sans-serif;
   font-weight: 700;
 }
 
-.title.page-title {
+.page-title {
   font-size: 32px;
   line-height: 1.2;
+  margin-bottom: 40px;
 }
 
 .button {
@@ -118,16 +120,114 @@ a {
   background-color: color-mix(in srgb, #9969ed 16%, #fff 84%);
 }
 
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.switch_text:first-child {
+  color: #dc63e5;
+}
+
+.switch:has(input:checked) .switch_text:first-child {
+  color: #372f2f;
+}
+
+.switch:has(input:checked) .switch_text:last-child {
+  color: #5164f0;
+}
+
+.switch_button {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 40px;
+
+  @media screen and (max-width: 835px) {
+    width: 64px;
+    height: 32px;
+  }
+}
+
+.switch_checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch_slider {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.32);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 32px;
+}
+
+.switch_slider:before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background-color: #dc63e5;
+  transition: all 0.4s cubic-bezier(0.87, 0, 0.13, 1);
+}
+@media screen and (max-width: 835px) {
+  .switch_slider:before {
+    width: 20px;
+    height: 20px;
+    top: 4px;
+    left: 4px;
+  }
+}
+
+.switch_checkbox:checked + .switch_slider:before {
+  background-color: #5164f0;
+  transform: translateX(40px);
+}
+@media screen and (max-width: 835px) {
+  .switch_checkbox:checked + .switch_slider:before {
+    transform: translateX(32px);
+  }
+}
+
 /* Settings Page */
 .page-wrapper {
   padding: 40px;
 }
 
-.setting-wrapper {
+.setting_wrapper {
   display: flex;
   align-items: flex-start;
+  gap: 40px;
+  @media screen and (max-width: 835px) {
+    display: block;
+    margin: 0 auto;
+    width: clamp(240px, 100%, 320px);
+  }
 }
 
 .setting_image {
-  width: 320px;
+  width: clamp(240px, 100%, 320px);
+  text-align: center;
+}
+
+.setting_label {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.setting_label:first-child {
+  margin-top: 0;
+}
+
+.setting_section {
+  margin-bottom: 40px;
 }
