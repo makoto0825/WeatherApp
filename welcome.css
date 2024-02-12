@@ -1,0 +1,393 @@
+/* reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Common */
+html {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  @media screen and (max-width: 835px) {
+    font-size: 14px;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: #fcebff;
+  color: #372f2f;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: #9969ed;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.font-title {
+  font-family: "Mochiy Pop One", sans-serif;
+  font-weight: 400;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.button {
+  border: none;
+  background: none;
+  border-radius: 80px;
+  font-size: 16px;
+  min-width: 160px;
+  height: 48px;
+  padding: 0 24px;
+  cursor: pointer;
+
+  @media screen and (max-width: 835px) {
+    height: 40px;
+    font-size: 14px;
+  }
+}
+
+.button.primary {
+  color: #fff;
+  background-image: linear-gradient(to bottom right, #dc63e5 0%, #5164f0 100%);
+  background-size: 160% 160%;
+  transition: all 0.2s ease-out;
+  background-position: center;
+}
+
+.button.primary:hover {
+  background-position: 80% 80%;
+}
+
+.button.white {
+  background-color: #fff;
+  color: #9969ed;
+  transition: all 0.2s ease-out;
+  border: 2px solid #9969ed;
+  font-weight: 500;
+}
+
+.button.white:hover {
+  background-color: color-mix(in srgb, #9969ed 16%, #fff 84%);
+}
+
+.text-button {
+  outline: none;
+  background: none;
+  border: none;
+  color: #9969ed;
+  font-weight: 600;
+}
+
+.text-button:hover {
+  text-decoration: underline;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  color: #9969ed;
+  font-weight: bold;
+  transition: all 0.2s ease-out;
+}
+
+.icon-button:hover {
+  background-color: color-mix(in srgb, #9969ed 16%, #fff 84%);
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.switch_text:first-child {
+  color: #dc63e5;
+}
+
+.switch:has(input:checked) .switch_text:first-child {
+  color: #372f2f;
+}
+
+.switch:has(input:checked) .switch_text:last-child {
+  color: #5164f0;
+}
+
+.switch_button {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 40px;
+
+  @media screen and (max-width: 835px) {
+    width: 64px;
+    height: 32px;
+  }
+}
+
+.switch_checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch_slider {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.32);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 32px;
+}
+
+.switch_slider:before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background-color: #dc63e5;
+  transition: all 0.4s cubic-bezier(0.87, 0, 0.13, 1);
+}
+@media screen and (max-width: 835px) {
+  .switch_slider:before {
+    width: 20px;
+    height: 20px;
+    top: 4px;
+    left: 4px;
+  }
+}
+
+.switch_checkbox:checked + .switch_slider:before {
+  background-color: #5164f0;
+  transform: translateX(40px);
+}
+@media screen and (max-width: 835px) {
+  .switch_checkbox:checked + .switch_slider:before {
+    transform: translateX(32px);
+  }
+}
+
+/* Welcome */
+.page-wrapper {
+  @media screen and (min-width: 836px) {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    height: 100vh;
+  }
+}
+
+.blob {
+  width: 40%;
+  max-width: 400px;
+  fill: #dc63e5;
+  position: absolute;
+  bottom: 8%;
+  left: 64%;
+  opacity: 0.4;
+}
+
+.slider {
+  display: flex;
+  overflow: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.slider_item {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+.slide {
+  width: clamp(320px, 88%, 1120px);
+  height: clamp(360px, calc(100% - 40px), 520px);
+  padding: 24px 40px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+
+  @media screen and (max-width: 835px) {
+    width: clamp(280px, calc(100% - 48px), 360px);
+    height: 584px;
+    display: block;
+    padding: 40px 32px;
+  }
+}
+
+.glass-box {
+  background: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.32);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.slide_img {
+  flex: 1;
+  text-align: center;
+
+  @media screen and (max-width: 835px) {
+    width: 160px;
+    margin: 0 auto 24px;
+  }
+}
+
+.slide_img img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}
+
+.slide_textarea {
+  width: clamp(400px, 48%, 48%);
+
+  @media screen and (max-width: 835px) {
+    width: 240px;
+    margin: 0 auto;
+  }
+}
+
+.slide_textarea.large {
+  width: clamp(400px, 64%, 64%);
+
+  @media screen and (max-width: 835px) {
+    width: 264px;
+    margin: 0 auto;
+  }
+}
+
+.slide_text {
+  text-wrap: balance;
+}
+
+.hero_logo {
+  color: #5164f0;
+  margin: 0;
+  font-size: 24px;
+
+  @media screen and (max-width: 835px) {
+    font-size: 16px;
+  }
+}
+
+.hero_copy {
+  font-size: 36px;
+  line-height: 1.4;
+  margin-bottom: 24px;
+
+  @media screen and (max-width: 835px) {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  span {
+    display: block;
+  }
+}
+
+.hero_button {
+  margin-top: 24px;
+
+  @media screen and (max-width: 835px) {
+    margin: 32px 0 0 auto;
+    display: block;
+  }
+}
+
+.onboarding_title {
+  font-size: 32px;
+  line-height: 1.4;
+  margin: 0 0 24px;
+  @media screen and (max-width: 835px) {
+    font-size: 24px;
+  }
+}
+
+.location-button-area {
+  margin: 24px 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  @media screen and (max-width: 835px) {
+    justify-content: center;
+    padding-left: 24px;
+  }
+}
+
+.location-text {
+  @media screen and (max-width: 835px) {
+    text-align: center;
+    padding-right: 8px;
+  }
+}
+
+.onboarding_step-controller {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+
+  @media screen and (max-width: 835px) {
+    margin-top: 32px;
+  }
+}
+
+.slide_switch {
+  margin: 24px 0;
+
+  @media screen and (max-width: 835px) {
+    justify-content: center;
+  }
+}

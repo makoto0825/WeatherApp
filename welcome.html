@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome | WeatherApp</title>
+    <link rel="stylesheet" href="./welcome.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200..900&family=Mochiy+Pop+One"
+    />
+  </head>
+  <body>
+    <div class="container page-wrapper">
+      <div class="blob">
+        <!-- This SVG is from https://codepen.io/Ali_Farooq_/pen/gKOJqx -->
+        <svg
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 310 350"
+        >
+          <path
+            d="M156.4,339.5c31.8-2.5,59.4-26.8,80.2-48.5c28.3-29.5,40.5-47,56.1-85.1c14-34.3,20.7-75.6,2.3-111  c-18.1-34.8-55.7-58-90.4-72.3c-11.7-4.8-24.1-8.8-36.8-11.5l-0.9-0.9l-0.6,0.6c-27.7-5.8-56.6-6-82.4,3c-38.8,13.6-64,48.8-66.8,90.3c-3,43.9,17.8,88.3,33.7,128.8c5.3,13.5,10.4,27.1,14.9,40.9C77.5,309.9,111,343,156.4,339.5z"
+          />
+        </svg>
+      </div>
+      <div class="slider">
+        <section class="slider_item">
+          <div class="slide glass-box">
+            <div class="slide_img">
+              <img src="./images/welcome/hero.png" alt="" />
+            </div>
+            <div class="slide_textarea">
+              <h1 class="hero_logo font-title">WeatherApp</h1>
+              <h2 class="hero_copy font-title">
+                <span>Dress Smart,</span>
+                <span>Be Weather-Wise</span>
+              </h2>
+              <p class="slide_text">
+                Get set for any forecast!<br />Our app ensures you're prepared
+                with the perfect outfit, making dressing for the weather as easy
+                as a tap.
+              </p>
+              <button class="hero_button button primary" type="button">
+                Get Started - It's Free
+              </button>
+            </div>
+          </div>
+        </section>
+        <section class="slider_item">
+          <div class="slide glass-box">
+            <div class="slide_img">
+              <img src="./images/welcome/location.png" alt="" />
+            </div>
+            <div class="slide_textarea large">
+              <h2 class="onboarding_title font-title">Set Your Location</h2>
+              <p class="slide_text">
+                Let's make your experience personal!<br />
+                Help us tailor your weather forecasts by setting your location.
+              </p>
+              <div class="location-button-area">
+                <button class="button white" type="button">
+                  Get My Location
+                </button>
+                <button class="icon-button" type="button">?</button>
+              </div>
+              <p class="location-text">
+                or <button class="text-button">Select Manually</button>
+              </p>
+              <div class="onboarding_step-controller">
+                <button class="button primary" type="button">Next</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="slider_item">
+          <div class="slide glass-box">
+            <div class="slide_img">
+              <img src="./images/welcome/fashion.png" alt="" />
+            </div>
+            <div class="slide_textarea large">
+              <h2 class="onboarding_title font-title">
+                Define Your Fashion Mode
+              </h2>
+              <p class="slide_text">
+                Choose casual or formal mode to personalize your fashion
+                experience. <br />
+                Step into outfits that match your vibe effortlessly!
+              </p>
+              <div class="slide_switch switch">
+                <span class="switch_text">Casual</span>
+                <label class="switch_button">
+                  <input type="checkbox" class="switch_checkbox" />
+                  <span class="switch_slider"></span>
+                </label>
+                <span class="switch_text">Formal</span>
+              </div>
+              <div class="onboarding_step-controller">
+                <button type="button" class="text-button">Back</button>
+                <button class="button primary" type="button">Start</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
