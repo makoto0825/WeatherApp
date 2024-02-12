@@ -11,10 +11,10 @@ h1{ font-size: clamp(2.125rem, 1.768rem + 1.79vw, 4rem);
     color: #372f2f;
 }
 ul{ 
-    padding: 0%;
+    padding: 0;
     list-style: none;
     width: 70%;
-    margin: 200px auto;
+    margin: 80px auto;
 }
 li{
     background: linear-gradient(to bottom right, #dc63e5 0%, #5164f0 100%);
