@@ -10,12 +10,38 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200..900&family=Mochiy+Pop+One"
     />
   </head>
+  <header class="header">
+    <input type="checkbox" class="sp_nav_trigger" id="sp_nav_trigger" />
+    <label for="sp_nav_trigger">
+      <span></span>
+    </label>
+    <nav class="navbar">
+      <a class="navbar_home" href="./index.html">WeatherApp</a>
+      <ul class="navbar_menu">
+        <li class="navbar_item">
+          <a href="./about.html" class="navbar_link">About</a>
+        </li>
+        <li class="navbar_item">
+          <a href="./detailed_weather.html" class="navbar_link">Weather</a>
+        </li>
+        <li class="navbar_item">
+          <a href="./clothes.html" class="navbar_link">Clothes</a>
+        </li>
+        <li class="navbar_item">
+          <a href="./settings.html" class="navbar_link current">Settings</a>
+        </li>
+        <li class="navbar_item">
+          <a href="./welcome.html" class="navbar_link">Welcome</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
   <body>
     <h1 class="fontMochiy-pop">Clothes Recommendation</h1>
     <div class="content">
       <h2 class=".fontMochiy-pop">05/02/2024</h2>
-      <img id="clothesImg" src="image_clothesPage/冬服.png" alt="clothes" />
-      <img id="snowImg" src="image_clothesPage/雪.png" alt="weather" />
+      <img id="clothesImg" src="images/clothes/冬服.png" alt="clothes" />
+      <img id="snowImg" src="images/clothes/雪.png" alt="weather" />
       <p class="fontPoppins">
         Choose a waterproof coat, insulated gloves, and a warm hat to combat the
         chilly weather. Opt for waterproof boots and insulated socks for

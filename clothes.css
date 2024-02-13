@@ -47,3 +47,165 @@ p{  margin: 5% auto;
     left: -5%;
     top:-2%;
 }
+
+/* Header */
+
+.header {
+    background-image: linear-gradient(transparent, rgba(255, 255, 255, 0.56));
+    border-bottom: 2px solid #fff;
+  }
+  
+  .sp_nav_trigger {
+    display: none;
+  }
+  
+  .sp_nav_trigger + label {
+    display: none;
+  }
+  
+  .navbar {
+    max-width: 1200px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 24px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  
+  .navbar_home {
+    color: #5164f0;
+    font-family: "Mochiy Pop One", sans-serif;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  
+  .navbar_menu {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    list-style: none;
+  }
+  
+  .navbar_link {
+    color: #372f2f;
+    text-decoration: none;
+  }
+  
+  .navbar_link:hover {
+    color: #9969ed;
+  }
+  
+  .navbar_link.current {
+    color: #9969ed;
+    font-weight: bold;
+    border-bottom: 2px solid #9969ed;
+  }
+  
+  /* Header - Tablet & Mobile */
+  @media screen and (max-width: 835px) {
+    .header {
+      background-image: none;
+      border: none;
+      padding: 24px;
+      display: flex;
+      justify-content: flex-end;
+    }
+  
+    .sp_nav_trigger + label {
+      display: block;
+      box-shadow: 0 4px 16px rgba(31, 38, 135, 0.1);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: #fff;
+      cursor: pointer;
+      position: absolute;
+    }
+  
+    .sp_nav_trigger:checked + label {
+      z-index: 2;
+    }
+  
+    .sp_nav_trigger + label span,
+    .sp_nav_trigger + label span::before,
+    .sp_nav_trigger + label span::after {
+      display: block;
+      height: 4px;
+      background-color: #372f2f;
+      border-radius: 4px;
+    }
+  
+    .sp_nav_trigger + label span {
+      position: relative;
+      width: 24px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  
+    .sp_nav_trigger + label span::before,
+    .sp_nav_trigger + label span::after {
+      content: "";
+      width: 16px;
+      height: 4px;
+      background-color: #372f2f;
+      position: absolute;
+      left: 0;
+      transition: all 0.2s ease-out;
+      transform-origin: center;
+    }
+  
+    .sp_nav_trigger + label span::before {
+      top: -8px;
+    }
+  
+    .sp_nav_trigger + label span::after {
+      top: 8px;
+    }
+  
+    .sp_nav_trigger:checked + label span {
+      background-color: transparent;
+    }
+  
+    .sp_nav_trigger:checked + label span::before,
+    .sp_nav_trigger:checked + label span::after {
+      width: 24px;
+    }
+  
+    .sp_nav_trigger:checked + label span::before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+  
+    .sp_nav_trigger:checked + label span::after {
+      transform: rotate(-45deg);
+      top: 0;
+    }
+  
+    .navbar {
+      position: fixed;
+      z-index: 1;
+      inset: 0;
+      opacity: 0;
+      padding: 40px 4%;
+      pointer-events: none;
+      transition: all 0.24s ease-out;
+      background-image: linear-gradient(to bottom right, #fcebff 0, #fff 64%);
+      flex-direction: column;
+      justify-content: stretch;
+    }
+  
+    .navbar_menu {
+      flex-direction: column;
+      gap: 24px;
+      padding: 40px;
+    }
+  
+    .sp_nav_trigger:checked ~ .navbar {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+  
