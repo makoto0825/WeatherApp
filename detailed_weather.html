@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200..900&family=Mochiy+Pop+One"
+    />
+    <title>detailed weather</title>
+  </head>
+  <body>
+    <header class="header">
+      <input
+        type="checkbox"
+        class="sp_nav_trigger"
+        id="sp_nav_trigger"
+      />
+      <label for="sp_nav_trigger">
+        <span></span>
+      </label>
+      <nav class="navbar">
+        <a
+          class="navbar_home"
+          href="./index.html"
+          >WeatherApp</a
+        >
+        <ul class="navbar_menu">
+          <li class="navbar_item">
+            <a
+              href="./about.html"
+              class="navbar_link current"
+              >About</a
+            >
+          </li>
+          <li class="navbar_item">
+            <a
+              href="./detailed_weather.html"
+              class="navbar_link"
+              >Weather</a
+            >
+          </li>
+          <li class="navbar_item">
+            <a
+              href="./clothes.html"
+              class="navbar_link"
+              >Clothes</a
+            >
+          </li>
+          <li class="navbar_item">
+            <a
+              href="./settings.html"
+              class="navbar_link"
+              >Settings</a
+            >
+          </li>
+          <li class="navbar_item">
+            <a
+              href="./welcome.html"
+              class="navbar_link"
+              >Welcome</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="detailed-hourly-forcast">
+        <h2 class="fontMochiy-pop">Hourly Forecast (Today)</h2>
+        <div class="detailed-weather-timeline fontMochiy-pop">
+          <div class="detailed-weather-item">
+            <p>
+              <img
+                src="./images/top/snow.png"
+                alt="weather image"
+              />
+            </p>
+            <p>25°</p>
+            <p>Now</p>
+          </div>
+          <div class="detailed-weather-item">
+            <p>
+              <img
+                src="./images/top/sunny.png"
+                alt="weather image"
+              />
+            </p>
+            <p>26°</p>
+            <p>14:00</p>
+          </div>
+          <div class="detailed-weather-item">
+            <p>
+              <img
+                src="./images/top/cloudy.png"
+                alt="weather image"
+              />
+            </p>
+            <p>23°</p>
+            <p>15:00</p>
+          </div>
+          <div class="detailed-weather-item">
+            <p>
+              <img
+                src="./images/top/rain.png"
+                alt="weather image"
+              />
+            </p>
+            <p>24°</p>
+            <p>16:00</p>
+          </div>
+          <div class="detailed-weather-item">
+            <p>
+              <img
+                src="./images/top/cloudy.png"
+                alt="weather image"
+              />
+            </p>
+            <p>21°</p>
+            <p>17:00</p>
+          </div>
+        </div>
+      </div>
+      <div class="detailed-daily-forcast">
+        <h2 class="fontMochiy-pop">7 Day Weather</h2>
+        <div class="detailed-weather-daily-forcast-content">
+          <table class="fontMochiy-pop">
+            <tr>
+              <td>Monday</td>
+              <td>25°C</td>
+              <td>
+                <img
+                  src="./images/top/sunny.png"
+                  alt="晴れ"
+                />
+              </td>
+              <td>10%</td>
+            </tr>
+            <tr>
+              <td>Tuesday</td>
+              <td>23°C</td>
+              <td>
+                <img
+                  src="./images/top/cloudy.png"
+                  alt="曇り"
+                />
+              </td>
+              <td>30%</td>
+            </tr>
+            <tr>
+              <td>Wednesday</td>
+              <td>20°C</td>
+              <td>
+                <img
+                  src="./images/top/rain.png"
+                  alt="雨"
+                />
+              </td>
+              <td>50%</td>
+            </tr>
+            <tr>
+              <td>Thursday</td>
+              <td>22°C</td>
+              <td>
+                <img
+                  src="./images/top/cloudy.png"
+                  alt="一部曇り"
+                />
+              </td>
+              <td>20%</td>
+            </tr>
+            <tr>
+              <td>Friday</td>
+              <td>24°C</td>
+              <td>
+                <img
+                  src="./images/top/sunny.png"
+                  alt="晴れ"
+                />
+              </td>
+              <td>0%</td>
+            </tr>
+            <tr>
+              <td>Saturday</td>
+              <td>26°C</td>
+              <td>
+                <img
+                  src="./images/top/sunny.png"
+                  alt="晴れ"
+                />
+              </td>
+              <td>5%</td>
+            </tr>
+            <tr>
+              <td>Sunday</td>
+              <td>28°C</td>
+              <td>
+                <img
+                  src="./images/top/sunny.png"
+                  alt="晴れ"
+                />
+              </td>
+              <td>0%</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <footer style="padding: 20px; text-align: center">
+        <p>&copy;WeatherAPP</p>
+      </footer>
+    </div>
+  </body>
+</html>
