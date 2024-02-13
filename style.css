@@ -7,6 +7,7 @@
 
 /* Common */
 html {
+    font-family: "Montserrat", sans-serif;
     font-size: 16px;
     line-height: 1.6;
     @media screen and (max-width: 835px) {
@@ -16,11 +17,6 @@ html {
 
 .fontMochiy-pop {
     font-family: "Mochiy Pop One", sans-serif;
-    font-weight: 400;
-  }
-
-.fontPoppins {
-    font-family: "Poppins", sans-serif;
     font-weight: 400;
   }
 
