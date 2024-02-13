@@ -11,7 +11,33 @@
     />
   </head>
   <body>
-    <div class="container page-wrapper">
+    <header class="header">
+      <input type="checkbox" class="sp_nav_trigger" id="sp_nav_trigger" />
+      <label for="sp_nav_trigger">
+        <span></span>
+      </label>
+      <nav class="navbar">
+        <a class="navbar_home" href="./index.html">WeatherApp</a>
+        <ul class="navbar_menu">
+          <li class="navbar_item">
+            <a href="./about.html" class="navbar_link">About</a>
+          </li>
+          <li class="navbar_item">
+            <a href="./detailed_weather.html" class="navbar_link">Weather</a>
+          </li>
+          <li class="navbar_item">
+            <a href="./clothes.html" class="navbar_link">Clothes</a>
+          </li>
+          <li class="navbar_item">
+            <a href="./settings.html" class="navbar_link">Settings</a>
+          </li>
+          <li class="navbar_item">
+            <a href="./welcome.html" class="navbar_link current">Welcome</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container page-wrapper">
       <div class="blob">
         <!-- This SVG is from https://codepen.io/Ali_Farooq_/pen/gKOJqx -->
         <svg
@@ -104,6 +130,6 @@
           </div>
         </section>
       </div>
-    </div>
+    </main>
   </body>
 </html>
