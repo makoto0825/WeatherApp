@@ -1,6 +1,8 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #fcebff;
+    color: #372f2f;
 }
 
 /* nav-menu 仮置き　ここから */
@@ -40,12 +42,11 @@ nav ul li a {
     width: 100%;
     top: 50px;
     height: calc(100vh - 50px); 
-    background-image: url('./images/heroimage.png'); 
+    background-image: url('./images/top/heroimage.png'); 
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
-
 
 .weather-timeline, .detailed-weather-timeline {
     display: flex;
@@ -95,3 +96,14 @@ nav ul li a {
     padding: 100px;
 }
 
+@media only screen and (max-width: 600px) {
+    .weather-item {
+      margin-bottom: 20px;
+    }
+
+    .weather-widget{
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
+  
