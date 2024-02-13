@@ -74,9 +74,16 @@ nav ul li a {
 .detailed-hourly-forcast{
     padding-bottom: 50px;
     margin-bottom: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
-.detailed-weather-ite img{
+.detailed-daily-forcast{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.detailed-weather-item img{
     max-width: 100%;
 }
 
@@ -93,5 +100,16 @@ nav ul li a {
 /* 削除予定です。 */
 .delete-padding{
     padding: 100px;
+}
+
+@media only screen and (max-width: 600px) {
+    .weather-item {
+      margin-bottom: 20px;
+    }
+
+    .detailed-hourly-forcast, .detailed-daily-forcast{
+      margin-left: 20px;
+      margin-right: 20px;
+    }
 }
 
