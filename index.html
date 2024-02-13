@@ -10,23 +10,76 @@
       rel="stylesheet"
       href="./style.css"
     />
-    <title>Document</title>
+    <title>Home</title>
   </head>
   <body>
-    <!-- 仮置き　header nav-menu は保留 ここから-->
-    <header>
-      <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Weather</a></li>
-          <li><a href="#">Settings</a></li>
+    <header class="header">
+      <input
+        type="checkbox"
+        class="sp_nav_trigger"
+        id="sp_nav_trigger"
+      />
+      <label for="sp_nav_trigger">
+        <span></span>
+      </label>
+      <nav class="navbar">
+        <a
+          class="navbar_home"
+          href="./index.html"
+          >WeatherApp</a
+        >
+        <ul class="navbar_menu">
+          <li class="navbar_item">
+            <a
+              href="./about.html"
+              class="navbar_link"
+              >About</a
+            >
+          </li>
+          <li class="navbar_item">
+            <a
+              href="./detailed_weather.html"
+              class="navbar_link"
+              >Weather</a
+            >
+          </li>
+          <li class="navbar_item">
+            <a
+              href="./clothes.html"
+              class="navbar_link"
+              >Clothes</a
+            >
+          </li>
+          <li class="navbar_item">
+            <a
+              href="./settings.html"
+              class="navbar_link current"
+              >Settings</a
+            >
+          </li>
+          <li class="navbar_item">
+            <a
+              href="./welcome.html"
+              class="navbar_link"
+              >Welcome</a
+            >
+          </li>
         </ul>
       </nav>
     </header>
-    <!-- header nav-menu は保留 ここまで-->
 
-    <div id="hero-image"></div>
+    <div id="hero-image">
+      <div class="hero-image-section"></div>
+      <div class="hero-section_contents">
+        <h1>Toronto</h1>
+        <div class="hero-section_cont_daily-information">
+          <p>February 13</p>
+          <p>Thuesday</p>
+          <p><span>temperature(icon)9°</span></p>
+          <p>Rainy Percent(icon) 60%</p>
+        </div>
+      </div>
+    </div>
 
     <div class="weather-widget">
       <h2>Today's forecast Etobicoke, Toronto, Canada</h2>
@@ -36,7 +89,7 @@
           <p>25°</p>
           <p>
             <img
-              src=""
+              src="./images/top/snow.png"
               alt="weather image"
             />
           </p>
@@ -47,7 +100,7 @@
           <p>37°</p>
           <p>
             <img
-              src=""
+              src="./images/top/sunny.png"
               alt="weather image"
             />
           </p>
@@ -58,7 +111,7 @@
           <p>18°</p>
           <p>
             <img
-              src=""
+              src="./images/top/rain.png"
               alt="weather image"
             />
           </p>
@@ -69,7 +122,7 @@
           <p>11°</p>
           <p>
             <img
-              src=""
+              src="./images/top/cloudy.png"
               alt="weather image"
             />
           </p>
@@ -77,7 +130,7 @@
         </div>
       </div>
     </div>
-    <footer style="padding: 50px; text-align: center">
+    <footer style="padding: 20px; text-align: center">
       <p>&copy;WeatherAPP</p>
     </footer>
   </body>

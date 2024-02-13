@@ -13,6 +13,60 @@
     <title>detailed weather</title>
   </head>
   <body>
+    <header class="header">
+      <input
+        type="checkbox"
+        class="sp_nav_trigger"
+        id="sp_nav_trigger"
+      />
+      <label for="sp_nav_trigger">
+        <span></span>
+      </label>
+      <nav class="navbar">
+        <a
+          class="navbar_home"
+          href="./index.html"
+          >WeatherApp</a
+        >
+        <ul class="navbar_menu">
+          <li class="navbar_item">
+            <a
+              href="./about.html"
+              class="navbar_link"
+              >About</a
+            >
+          </li>
+          <li class="navbar_item">
+            <a
+              href="./detailed_weather.html"
+              class="navbar_link"
+              >Weather</a
+            >
+          </li>
+          <li class="navbar_item">
+            <a
+              href="./clothes.html"
+              class="navbar_link"
+              >Clothes</a
+            >
+          </li>
+          <li class="navbar_item">
+            <a
+              href="./settings.html"
+              class="navbar_link"
+              >Settings</a
+            >
+          </li>
+          <li class="navbar_item">
+            <a
+              href="./welcome.html"
+              class="navbar_link current"
+              >Welcome</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
     <div class="container">
       <div class="detailed-hourly-forcast">
         <h2>Hourly Forecast (Today)</h2>
@@ -20,7 +74,7 @@
           <div class="detailed-weather-item">
             <p>
               <img
-                src=""
+                src="./images/top/snow.png"
                 alt="weather image"
               />
             </p>
@@ -30,7 +84,7 @@
           <div class="detailed-weather-item">
             <p>
               <img
-                src=""
+                src="./images/top/sunny.png"
                 alt="weather image"
               />
             </p>
@@ -40,7 +94,7 @@
           <div class="detailed-weather-item">
             <p>
               <img
-                src=""
+                src="./images/top/cloudy.png"
                 alt="weather image"
               />
             </p>
@@ -50,7 +104,7 @@
           <div class="detailed-weather-item">
             <p>
               <img
-                src=""
+                src="./images/top/rain.png"
                 alt="weather image"
               />
             </p>
@@ -60,7 +114,7 @@
           <div class="detailed-weather-item">
             <p>
               <img
-                src=""
+                src="./images/top/cloudy.png"
                 alt="weather image"
               />
             </p>
@@ -78,7 +132,7 @@
               <td>25°C</td>
               <td>
                 <img
-                  src="sunny.png"
+                  src="./images/top/sunny.png"
                   alt="晴れ"
                 />
               </td>
@@ -89,7 +143,7 @@
               <td>23°C</td>
               <td>
                 <img
-                  src="cloudy.png"
+                  src="./images/top/cloudy.png"
                   alt="曇り"
                 />
               </td>
@@ -100,7 +154,7 @@
               <td>20°C</td>
               <td>
                 <img
-                  src="rainy.png"
+                  src="./images/top/rain.png"
                   alt="雨"
                 />
               </td>
@@ -111,7 +165,7 @@
               <td>22°C</td>
               <td>
                 <img
-                  src="partly-cloudy.png"
+                  src="./images/top/cloudy.png"
                   alt="一部曇り"
                 />
               </td>
@@ -122,7 +176,7 @@
               <td>24°C</td>
               <td>
                 <img
-                  src="sunny.png"
+                  src="./images/top/sunny.png"
                   alt="晴れ"
                 />
               </td>
@@ -133,7 +187,7 @@
               <td>26°C</td>
               <td>
                 <img
-                  src="sunny.png"
+                  src="./images/top/sunny.png"
                   alt="晴れ"
                 />
               </td>
@@ -144,7 +198,7 @@
               <td>28°C</td>
               <td>
                 <img
-                  src="sunny.png"
+                  src="./images/top/sunny.png"
                   alt="晴れ"
                 />
               </td>
@@ -152,8 +206,10 @@
             </tr>
           </table>
         </div>
-        <div class="delete-padding"></div>
       </div>
+      <footer style="padding: 20px; text-align: center">
+        <p>&copy;WeatherAPP</p>
+      </footer>
     </div>
   </body>
 </html>
