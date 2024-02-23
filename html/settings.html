@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings | WeatherApp</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200..900&family=Mochiy+Pop+One"
+    />
+    <link rel="stylesheet" href="./settings.css" />
+  </head>
+  <body>
+    <header class="header">
+      <input type="checkbox" class="sp_nav_trigger" id="sp_nav_trigger" />
+      <label for="sp_nav_trigger">
+        <span></span>
+      </label>
+      <nav class="navbar">
+        <a class="navbar_home" href="./index.html">WeatherApp</a>
+        <ul class="navbar_menu">
+          <li class="navbar_item">
+            <a href="./about.html" class="navbar_link">About</a>
+          </li>
+          <li class="navbar_item">
+            <a href="./detailed_weather.html" class="navbar_link">Weather</a>
+          </li>
+          <li class="navbar_item">
+            <a href="./clothes.html" class="navbar_link">Clothes</a>
+          </li>
+          <li class="navbar_item">
+            <a href="./settings.html" class="navbar_link current">Settings</a>
+          </li>
+          <li class="navbar_item">
+            <a href="./welcome.html" class="navbar_link">Welcome</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container page-wrapper">
+      <h1 class="page-title font-title">Settings</h1>
+      <div class="setting_wrapper">
+        <div class="setting_image">
+          <img src="./images/settings/avatar.svg" alt="" />
+        </div>
+        <div>
+          <section class="setting_section">
+            <h3 class="setting_label">Location</h3>
+            <p>Toronto, Ontario, Canada</p>
+            <button class="text-button">Change</button>
+          </section>
+          <section class="setting_section">
+            <h3 class="setting_label">Fashion Mode</h3>
+            <div class="slide_switch switch">
+              <span class="switch_text">Casual</span>
+              <label class="switch_button">
+                <input type="checkbox" class="switch_checkbox" />
+                <span class="switch_slider"></span>
+              </label>
+              <span class="switch_text">Formal</span>
+            </div>
+          </section>
+          <p>
+            Don't know what the settings about?<br />Go to
+            <a href="./about.html" target="_blank">about page</a>
+          </p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
