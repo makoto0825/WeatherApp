@@ -251,7 +251,7 @@ h6 {
   text-align: center;
 
   @media screen and (max-width: 835px) {
-    width: 160px;
+    width: 146px;
     margin: 0 auto 24px;
   }
 }
@@ -362,5 +362,31 @@ h6 {
 
   @media screen and (max-width: 835px) {
     justify-content: center;
+  }
+}
+
+.tooltip_wrapper {
+  position: relative;
+}
+
+.tooltip_wrapper:hover .tooltip {
+  display: block;
+}
+
+.tooltip {
+  position: absolute;
+  display: none;
+  width: 400px;
+  overflow: auto;
+  font-size: 12px;
+  line-height: 1;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+
+  @media screen and (max-width: 835px) {
+    right: 0;
+    width: auto;
+    min-width: 200px;
   }
 }
