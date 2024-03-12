@@ -1,3 +1,9 @@
+body {
+  @media screen and (max-width: 835px) {
+    font-size: 14px;
+  }
+}
+
 button {
   font-family: inherit;
   cursor: pointer;
@@ -184,13 +190,15 @@ h6 {
 }
 
 /* Welcome */
-.page-wrapper {
+.main-wrapper {
   @media screen and (min-width: 836px) {
     display: flex;
     justify-content: center;
     position: relative;
     align-items: center;
-    height: 100vh;
+    height: calc(
+      100vh - 128px
+    ); /* 128px = 80px (header height) + 48px (footer height) */
   }
 }
 
@@ -212,7 +220,9 @@ h6 {
 
 .slider_item {
   width: 100vw;
-  height: 100vh;
+  height: calc(
+    100vh - 128px
+  ); /* 128px = 80px (header height) + 48px (footer height) */
   box-sizing: border-box;
   padding: 20px 0;
   display: flex;
@@ -220,6 +230,11 @@ h6 {
   justify-content: center;
   scroll-snap-align: start;
   flex-shrink: 0;
+  @media screen and (max-width: 835px) {
+    height: calc(
+      100vh - 96px
+    ); /* 96px = 48px(header height) + 48px(footer height) */
+  }
 }
 
 .slide {
@@ -232,9 +247,10 @@ h6 {
 
   @media screen and (max-width: 835px) {
     width: clamp(280px, calc(100% - 48px), 360px);
-    height: 584px;
+    height: 512px;
     display: block;
-    padding: 40px 32px;
+    padding: 40px 20px;
+    text-align: center;
   }
 }
 
@@ -244,6 +260,10 @@ h6 {
   backdrop-filter: blur(8px);
   border-radius: 16px;
   border: 2px solid rgba(255, 255, 255, 0.8);
+
+  @media screen and (max-width: 835px) {
+    box-shadow: 0 8px 24px 0 rgba(31, 38, 135, 0.24);
+  }
 }
 
 .slide_img {
@@ -251,8 +271,8 @@ h6 {
   text-align: center;
 
   @media screen and (max-width: 835px) {
-    width: 146px;
-    margin: 0 auto 24px;
+    width: 128px;
+    margin: 0 auto 16px;
   }
 }
 
@@ -266,7 +286,7 @@ h6 {
   width: clamp(400px, 48%, 48%);
 
   @media screen and (max-width: 835px) {
-    width: 240px;
+    width: auto;
     margin: 0 auto;
   }
 }
@@ -290,18 +310,23 @@ h6 {
   font-size: 24px;
 
   @media screen and (max-width: 835px) {
-    font-size: 16px;
+    display: none;
   }
 }
 
-.hero_copy {
+.slide_title {
   font-size: 36px;
   line-height: 1.4;
   margin-bottom: 24px;
 
   @media screen and (max-width: 835px) {
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 16px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   span {
@@ -313,17 +338,8 @@ h6 {
   margin-top: 24px;
 
   @media screen and (max-width: 835px) {
-    margin: 32px 0 0 auto;
+    margin: 32px auto 0;
     display: block;
-  }
-}
-
-.onboarding_title {
-  font-size: 32px;
-  line-height: 1.4;
-  margin: 0 0 24px;
-  @media screen and (max-width: 835px) {
-    font-size: 24px;
   }
 }
 
@@ -353,7 +369,9 @@ h6 {
   gap: 16px;
 
   @media screen and (max-width: 835px) {
-    margin-top: 32px;
+    flex-direction: column-reverse;
+    margin-top: 24px;
+    gap: 8px;
   }
 }
 
@@ -389,4 +407,12 @@ h6 {
     width: auto;
     min-width: 200px;
   }
+}
+
+.footer {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
 }
