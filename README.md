@@ -1,6 +1,6 @@
 # WeatherApp
 ## Outline
-WeatherWardrobe is an application designed to help you check the weather forecast and choose suitable clothing based on the current and upcoming weather conditions.
+WeatherApp is an application designed to help you check the weather forecast and choose suitable clothing based on the current and upcoming weather conditions.
 > [!WARNING]
 > This project is still work in progress. Some of the features are to be implemented in the future.
 > Currently HTML and CSS code has been created statically so the contents are not dynamic.
