@@ -119,7 +119,7 @@ h6 {
 }
 
 .switch_text:first-child {
-  color: #dc63e5;
+  color: #5164f0;
 }
 
 .switch:has(input:checked) .switch_text:first-child {
@@ -127,7 +127,7 @@ h6 {
 }
 
 .switch:has(input:checked) .switch_text:last-child {
-  color: #5164f0;
+  color: #dc63e5;
 }
 
 .switch_button {
@@ -167,7 +167,7 @@ h6 {
   position: absolute;
   top: 6px;
   left: 6px;
-  background-color: #dc63e5;
+  background-color: #5164f0;
   transition: all 0.4s cubic-bezier(0.87, 0, 0.13, 1);
 }
 @media screen and (max-width: 835px) {
@@ -180,7 +180,7 @@ h6 {
 }
 
 .switch_checkbox:checked + .switch_slider:before {
-  background-color: #5164f0;
+  background-color: #dc63e5;
   transform: translateX(40px);
 }
 @media screen and (max-width: 835px) {
