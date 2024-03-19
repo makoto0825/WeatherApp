@@ -83,6 +83,10 @@ h6 {
     max-width: 100%;
 }
 
+.detailed-weather-daily-forcast-content{
+    cursor: pointer;
+}
+
 .detailed-weather-daily-forcast-content img{
     max-width: 100%;
     height: auto;
