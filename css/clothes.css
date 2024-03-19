@@ -1,13 +1,18 @@
 h1 {
-  text-align: center;
-  font-size: clamp(2.125rem, 1.768rem + 1.79vw, 3rem);
+  /* text-align: center; */
+  /* font-size: 32px; */
+  font-size: 1.5em;
   color: #372f2f;
-  margin-bottom: 5%;
+  /* margin-bottom: 5%; */
+  margin-top: 50px;
+  margin-bottom: 30px;
+  margin-left: 30px;
 }
 .content {
   margin: 0 auto;
   padding: 1%;
   background: linear-gradient(to bottom right, #dc63e5 0%, #5164f0 100%);
+  /* width: clamp(18.75rem, 10.417rem + 41.67vw, 62.5rem); */
   width: clamp(18.75rem, 10.417rem + 41.67vw, 62.5rem);
   /* height: clamp(38.5rem, 27.976rem + 52.62vw, 93.75rem); */
   border-radius: 30px;
@@ -38,9 +43,9 @@ h2 {
   width: 50%;
   margin-bottom: 8%;
 }
-#snowImg {
+#weatherImage {
   position: absolute;
-  width: 30%;
+  width: 20%;
   left: -5%;
   top: -2%;
 }
@@ -110,4 +115,12 @@ h2 {
   .switch_checkbox:checked + .switch_slider:before {
     transform: translateX(32px);
   }
+}
+
+.footer {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
 }
