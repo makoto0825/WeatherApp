@@ -42,3 +42,20 @@ const removeEventListeners = () => {
   window.removeEventListener("unload", removeEventListeners);
 };
 window.addEventListener("unload", removeEventListeners);
+
+// ==================================
+// Get Location with Geolocation API
+// ==================================
+const getLocationButton = document.getElementById("getLocationButton");
+getLocationButton.addEventListener("click", getLocation);
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      localStorage.setItem("wa_latitude", latitude);
+      localStorage.setItem("wa_longitude", longitude);
+    });
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
