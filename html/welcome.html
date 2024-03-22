@@ -177,6 +177,21 @@
           scrollSlide("prev");
         });
       });
+
+      // Clean up
+      window.addEventListener("unload", () => {
+        nextButtons.forEach((button) => {
+          button.removeEventListener("click", () => {
+            scrollSlide("next");
+          });
+        });
+
+        prevButtons.forEach((button) => {
+          button.removeEventListener("click", () => {
+            scrollSlide("prev");
+          });
+        });
+      });
     </script>
   </body>
 </html>
