@@ -26,7 +26,7 @@ prevButtons.forEach((button) => {
 });
 
 // Clean up
-window.addEventListener("unload", () => {
+const removeEventListeners = () => {
   nextButtons.forEach((button) => {
     button.removeEventListener("click", () => {
       scrollSlide("next");
@@ -38,4 +38,7 @@ window.addEventListener("unload", () => {
       scrollSlide("prev");
     });
   });
-});
+
+  window.removeEventListener("unload", removeEventListeners);
+};
+window.addEventListener("unload", removeEventListeners);
