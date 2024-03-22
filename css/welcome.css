@@ -213,9 +213,20 @@ h6 {
 }
 
 .slider {
+  overflow: hidden;
+}
+
+.slider_content {
   display: flex;
-  overflow: scroll;
-  scroll-snap-type: x mandatory;
+  transition: transform 0.5s ease;
+}
+
+.slider_content[current="2"] {
+  transform: translateX(-100%);
+}
+
+.slider_content[current="3"] {
+  transform: translateX(-200%);
 }
 
 .slider_item {
