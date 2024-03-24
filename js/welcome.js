@@ -50,11 +50,18 @@ const getLocationButton = document.getElementById("getLocationButton");
 getLocationButton.addEventListener("click", getLocation);
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { latitude, longitude } = position.coords;
-      localStorage.setItem("wa_latitude", latitude);
-      localStorage.setItem("wa_longitude", longitude);
-    });
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        localStorage.setItem("wa_latitude", latitude);
+        localStorage.setItem("wa_longitude", longitude);
+      },
+      () => {
+        alert(
+          "Failed to get your location. Please try again or set the location by selecting the city."
+        );
+      }
+    );
   } else {
     alert("Geolocation is not supported by this browser.");
   }
