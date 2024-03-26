@@ -11,17 +11,19 @@ function scrollSlide(direction) {
   );
 }
 
-const nextButtons = document.querySelectorAll(".slide_button_next");
-nextButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    scrollSlide("next");
+document.addEventListener("DOMContentLoaded", function () {
+  const nextButtons = document.querySelectorAll(".slide_button_next");
+  nextButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      scrollSlide("next");
+    });
   });
-});
 
-const prevButtons = document.querySelectorAll(".slide_button_prev");
-prevButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    scrollSlide("prev");
+  const prevButtons = document.querySelectorAll(".slide_button_prev");
+  prevButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      scrollSlide("prev");
+    });
   });
 });
 
