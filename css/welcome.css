@@ -221,11 +221,11 @@ h6 {
   transition: transform 0.5s ease;
 }
 
-.slider_content[current="2"] {
+.slider_content[data-current="2"] {
   transform: translateX(-100%);
 }
 
-.slider_content[current="3"] {
+.slider_content[data-current="3"] {
   transform: translateX(-200%);
 }
 

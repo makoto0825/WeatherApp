@@ -1,12 +1,14 @@
 // ===========================
 // Switching Sliders
 // ===========================
+const CURRENT_ATTRIBUTE = "data-current";
+
 function scrollSlide(direction) {
   const sliderContent = document.getElementById("sliderContent");
-  const currentNumber = parseInt(sliderContent.getAttribute("current"));
+  const currentNumber = parseInt(sliderContent.getAttribute(CURRENT_ATTRIBUTE));
 
   sliderContent.setAttribute(
-    "current",
+    CURRENT_ATTRIBUTE,
     direction === "next" ? currentNumber + 1 : currentNumber - 1
   );
 }
