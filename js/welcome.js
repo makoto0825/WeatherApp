@@ -46,13 +46,18 @@ window.addEventListener("unload", removeEventListeners);
 // ==================================
 // Get Location with Geolocation API
 // ==================================
+const LOCAL_STORAGE_KEYS = {
+  lat: "latitude",
+  long: "longitude",
+};
+
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
-        localStorage.setItem("latitude", latitude);
-        localStorage.setItem("longitude", longitude);
+        localStorage.setItem(LOCAL_STORAGE_KEYS.lat, latitude);
+        localStorage.setItem(LOCAL_STORAGE_KEYS.long, longitude);
       },
       () => {
         alert(
