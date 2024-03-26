@@ -51,8 +51,8 @@ function getLocation() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
-        localStorage.setItem("wa_latitude", latitude);
-        localStorage.setItem("wa_longitude", longitude);
+        localStorage.setItem("latitude", latitude);
+        localStorage.setItem("longitude", longitude);
       },
       () => {
         alert(
