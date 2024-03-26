@@ -3,7 +3,7 @@
 // ===========================
 const CURRENT_ATTRIBUTE = "data-current";
 
-function scrollSlide(direction) {
+function switchSlide(direction) {
   const sliderContent = document.getElementById("sliderContent");
   const currentNumber = parseInt(sliderContent.getAttribute(CURRENT_ATTRIBUTE));
 
@@ -14,17 +14,17 @@ function scrollSlide(direction) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const nextButtons = document.querySelectorAll(".slide_button_next");
+  const nextButtons = document.querySelectorAll(".js-nextSlide");
   nextButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      scrollSlide("next");
+      switchSlide("next");
     });
   });
 
-  const prevButtons = document.querySelectorAll(".slide_button_prev");
+  const prevButtons = document.querySelectorAll(".js-prevSlide");
   prevButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      scrollSlide("prev");
+      switchSlide("prev");
     });
   });
 });
