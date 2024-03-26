@@ -46,8 +46,6 @@ window.addEventListener("unload", removeEventListeners);
 // ==================================
 // Get Location with Geolocation API
 // ==================================
-const getLocationButton = document.getElementById("getLocationButton");
-getLocationButton.addEventListener("click", getLocation);
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -66,3 +64,8 @@ function getLocation() {
     alert("Geolocation is not supported by this browser.");
   }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const getLocationButton = document.getElementById("getLocationButton");
+  getLocationButton.addEventListener("click", getLocation);
+});
