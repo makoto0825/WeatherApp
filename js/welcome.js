@@ -71,6 +71,6 @@ function getLocation() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const getLocationButton = document.getElementById("getLocationButton");
+  const getLocationButton = document.getElementById("js-getLocation");
   getLocationButton.addEventListener("click", getLocation);
 });
