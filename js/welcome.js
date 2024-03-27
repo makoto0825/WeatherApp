@@ -4,7 +4,7 @@
 const CURRENT_ATTRIBUTE = "data-current";
 
 function switchSlide(direction) {
-  const sliderContent = document.getElementById("sliderContent");
+  const sliderContent = document.getElementById("js-sliderContent");
   const currentNumber = parseInt(sliderContent.getAttribute(CURRENT_ATTRIBUTE));
 
   sliderContent.setAttribute(
