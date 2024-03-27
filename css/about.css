@@ -5,7 +5,8 @@ html {
 }
 
 h1 {
-  font-size: clamp(2.125rem, 1.768rem + 1.79vw, 4rem);
+  /* font-size: clamp(2.125rem, 1.768rem + 1.79vw, 4rem); */
+  font-size: 1.5em;
   color: #372f2f;
 }
 section {
@@ -59,9 +60,9 @@ section ul li div {
 }
 
 @media (max-width: 768px) {
-  h1 {
+  /* h1 {
     text-align: center;
-  }
+  } */
   section ul {
     width: 100%;
     margin: 40px auto;
@@ -84,4 +85,11 @@ section ul li div {
     padding: 10px 30px;
     width: 100%;
   }
+}
+.footer {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
 }

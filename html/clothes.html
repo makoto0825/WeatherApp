@@ -10,6 +10,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200..900&family=Mochiy+Pop+One"
     />
+    <script src="../js/clothes.js"></script>
   </head>
   <body>
     <header class="header">
@@ -40,11 +41,11 @@
     </header>
     <h1 class="fontMochiy-pop">Clothes Recommendation</h1>
     <div class="content">
-      <h2 class=".fontMochiy-pop">05/02/2024</h2>
+      <h2 class="fontMochiy-pop" id="js-getToday"></h2>
       <div>
         <img id="clothesImg" src="../images/clothes/冬服.png" alt="clothes" />
       </div>
-      <img id="snowImg" src="../images/clothes/雪.png" alt="weather" />
+      <img class="weatherImage" id="js-weatherImage" alt="weather" />
       <p class="fontPoppins text">
         Choose a waterproof coat, insulated gloves, and a warm hat to combat the
         chilly weather. Opt for waterproof boots and insulated socks for
@@ -60,5 +61,8 @@
         <span class="switch_text">F</span>
       </div>
     </div>
+    <footer class="footer">
+      <p>&copy;WeatherApp</p>
+    </footer>
   </body>
 </html>
