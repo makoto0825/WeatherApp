@@ -53,90 +53,103 @@
         </svg>
       </div>
       <div class="slider">
-        <section class="slider_item">
-          <div class="slide glass-box">
-            <div class="slide_img">
-              <img src="../images/welcome/hero.png" alt="" />
-            </div>
-            <div class="slide_textarea">
-              <h1 class="hero_logo font-title">WeatherApp</h1>
-              <h2 class="slide_title font-title">
-                <span>Dress Right for</span>
-                <span>Every Forecast</span>
-              </h2>
-              <p class="slide_text">
-                Get set for any forecast!<br />Our app ensures you're prepared
-                with the perfect outfit, making dressing for the weather as easy
-                as a tap.
-              </p>
-              <button class="hero_button button primary" type="button">
-                Get Started - It's Free
-              </button>
-            </div>
-          </div>
-        </section>
-        <section class="slider_item">
-          <div class="slide glass-box">
-            <div class="slide_img">
-              <img src="../images/welcome/location.png" alt="" />
-            </div>
-            <div class="slide_textarea large">
-              <h2 class="slide_title font-title">Set Your Location</h2>
-              <p class="slide_text">
-                Help us tailor your weather forecasts by setting your location.
-              </p>
-              <div class="location-button-area">
-                <button class="button white" type="button">
-                  Get My Location
+        <div id="js-sliderContent" class="slider_content" data-current="1">
+          <section class="slider_item">
+            <div class="slide glass-box">
+              <div class="slide_img">
+                <img src="../images/welcome/hero.png" alt="" />
+              </div>
+              <div class="slide_textarea">
+                <h1 class="hero_logo font-title">WeatherApp</h1>
+                <h2 class="slide_title font-title">
+                  <span>Dress Right for</span>
+                  <span>Every Forecast</span>
+                </h2>
+                <p class="slide_text">
+                  Get set for any forecast!<br />Our app ensures you're prepared
+                  with the perfect outfit, making dressing for the weather as
+                  easy as a tap.
+                </p>
+                <button
+                  class="hero_button button primary js-nextSlide"
+                  type="button"
+                >
+                  Get Started - It's Free
                 </button>
-                <div class="tooltip_wrapper">
-                  <div class="icon-button" type="button">?</div>
-                  <div class="tooltip">
-                    <p>
-                      Click "Allow Location Access" to get your location or
-                      enter it manually.
-                    </p>
+              </div>
+            </div>
+          </section>
+          <section class="slider_item">
+            <div class="slide glass-box">
+              <div class="slide_img">
+                <img src="../images/welcome/location.png" alt="" />
+              </div>
+              <div class="slide_textarea large">
+                <h2 class="slide_title font-title">Set Your Location</h2>
+                <p class="slide_text">
+                  Help us tailor your weather forecasts by setting your
+                  location.
+                </p>
+                <div class="location-button-area">
+                  <button class="button white" type="button">
+                    Get My Location
+                  </button>
+                  <div class="tooltip_wrapper">
+                    <div class="icon-button">?</div>
+                    <div class="tooltip">
+                      <p>
+                        Click "Allow Location Access" to get your location or
+                        enter it manually.
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <p class="location-text">
-                or <button class="text-button">Select Manually</button>
-              </p>
-              <div class="onboarding_step-controller">
-                <button class="button primary" type="button">Next</button>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="slider_item">
-          <div class="slide glass-box">
-            <div class="slide_img">
-              <img src="../images/welcome/fashion.png" alt="" />
-            </div>
-            <div class="slide_textarea large">
-              <h2 class="slide_title font-title">Define Your Fashion Mode</h2>
-              <p class="slide_text">
-                Choose preferred gender to personalize your fashion experience.
-              </p>
-              <div class="slide_switch switch">
-                <span class="switch_text">Male</span>
-                <label class="switch_button">
-                  <input type="checkbox" class="switch_checkbox" />
-                  <span class="switch_slider"></span>
-                </label>
-                <span class="switch_text">Female</span>
-              </div>
-              <div class="onboarding_step-controller">
-                <button type="button" class="text-button">Back</button>
-                <button class="button primary" type="button">Start</button>
+                <p class="location-text">
+                  or <button class="text-button">Select Manually</button>
+                </p>
+                <div class="onboarding_step-controller">
+                  <button class="button primary js-nextSlide" type="button">
+                    Next
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+          <section class="slider_item">
+            <div class="slide glass-box">
+              <div class="slide_img">
+                <img src="../images/welcome/fashion.png" alt="" />
+              </div>
+              <div class="slide_textarea large">
+                <h2 class="slide_title font-title">Define Your Fashion Mode</h2>
+                <p class="slide_text">
+                  Choose preferred gender to personalize your fashion
+                  experience.
+                </p>
+                <div class="slide_switch switch">
+                  <span class="switch_text">Male</span>
+                  <label class="switch_button">
+                    <input type="checkbox" class="switch_checkbox" />
+                    <span class="switch_slider"></span>
+                  </label>
+                  <span class="switch_text">Female</span>
+                </div>
+                <div class="onboarding_step-controller">
+                  <button type="button" class="text-button js-prevSlide">
+                    Back
+                  </button>
+                  <button class="button primary" type="button">Start</button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
     </main>
     <footer class="footer">
       <p>&copy;WeatherApp</p>
     </footer>
+
+    <script src="../js/welcome.js"></script>
   </body>
 </html>
