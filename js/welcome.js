@@ -46,3 +46,35 @@ const removeEventListeners = () => {
   window.removeEventListener("unload", removeEventListeners);
 };
 window.addEventListener("unload", removeEventListeners);
+
+// ==================================
+// Get Location with Geolocation API
+// ==================================
+const LOCAL_STORAGE_KEYS = {
+  lat: "latitude",
+  long: "longitude",
+};
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        localStorage.setItem(LOCAL_STORAGE_KEYS.lat, latitude);
+        localStorage.setItem(LOCAL_STORAGE_KEYS.long, longitude);
+      },
+      () => {
+        alert(
+          "Failed to get your location. Please try again or set the location by selecting the city."
+        );
+      }
+    );
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const getLocationButton = document.getElementById("js-getLocation");
+  getLocationButton.addEventListener("click", getLocation);
+});
