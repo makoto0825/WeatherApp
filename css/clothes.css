@@ -43,7 +43,7 @@ h2 {
   width: 50%;
   margin-bottom: 8%;
 }
-#weatherImage {
+.weatherImage {
   position: absolute;
   width: 20%;
   left: -5%;

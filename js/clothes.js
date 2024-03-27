@@ -71,12 +71,14 @@ const WeatherIconObj = {
   96: "Thunderstorm with hail",
   99: "Thunderstorm with hail",
 };
-(async () => {
-  const WeatherInfo = await getWeather();
-  const todayWeather = WeatherInfo.daily.weather_code[0];
-  //todayWeatherの値によって表示する画像を変更する
-  const weatherImageName = WeatherIconObj[todayWeather];
-  const weatherImageElement = document.getElementById("weatherImage");
-  // 画像のパスを設定
-  weatherImageElement.src = `../images/weatherIcon/${weatherImageName}.png`;
-})();
+document.addEventListener("DOMContentLoaded", () => {
+  (async () => {
+    const WeatherInfo = await getWeather();
+    const todayWeather = WeatherInfo.daily.weather_code[0];
+    //todayWeatherの値によって表示する画像を変更する
+    const weatherImageName = WeatherIconObj[todayWeather];
+    const weatherImageElement = document.getElementById("js-weatherImage");
+    // 画像のパスを設定
+    weatherImageElement.src = `../images/weatherIcon/${weatherImageName}.png`;
+  })();
+});
