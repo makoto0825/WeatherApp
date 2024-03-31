@@ -78,3 +78,24 @@ document.addEventListener("DOMContentLoaded", function () {
   const getLocationButton = document.getElementById("js-getLocation");
   getLocationButton.addEventListener("click", getLocation);
 });
+
+// ============================================================
+// Get Location Manually by Selecting Country, State, and City
+// ============================================================
+document.addEventListener("DOMContentLoaded", function () {
+  const openCitySelectModalButton = document.getElementById(
+    "js-openCitySelectModal"
+  );
+  const citySelectModal = document.getElementById("js-citySelectModal");
+  const closeCitySelectModalButton = document.getElementById(
+    "js-closeCitySelectModal"
+  );
+
+  openCitySelectModalButton.addEventListener("click", () => {
+    citySelectModal.classList.add("visible");
+  });
+
+  closeCitySelectModalButton.addEventListener("click", () => {
+    citySelectModal.classList.remove("visible");
+  });
+});
