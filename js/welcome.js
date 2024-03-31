@@ -82,6 +82,36 @@ document.addEventListener("DOMContentLoaded", function () {
 // ============================================================
 // Get Location Manually by Selecting Country, State, and City
 // ============================================================
+async function fetchData(source) {
+  try {
+    const response = await fetch(source);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    return await response.json();
+  } catch (error) {
+    window.alert(
+      "There was a problem with retrieving data. Please refresh the page.",
+      error
+    );
+  }
+}
+
+let provinceCityList = [];
+
+async function displayProvinceList() {
+  const provinceSelect = document.getElementById("js-provinceList");
+  provinceCityList = await fetchData("../data/canada-province-city.json");
+
+  provinceCityList.forEach((listItem) => {
+    const option = document.createElement("option");
+    option.value = listItem.province.replace(/\s+/g, "-");
+    option.text = listItem.province;
+    provinceSelect.appendChild(option);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const openCitySelectModalButton = document.getElementById(
     "js-openCitySelectModal"
@@ -98,4 +128,6 @@ document.addEventListener("DOMContentLoaded", function () {
   closeCitySelectModalButton.addEventListener("click", () => {
     citySelectModal.classList.remove("visible");
   });
+
+  displayProvinceList();
 });
