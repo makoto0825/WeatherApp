@@ -77,11 +77,16 @@
     </header>
 
     <div id="hero-image">
-      <div class="hero-image-section"></div>
+      <div>
+        <img
+          class="js-weatherImage hero-image-section"
+          alt="Weather Icon"
+        />
+      </div>
       <div class="hero-section_contents">
         <h1 class="fontMochiy-pop">Toronto</h1>
         <div class="hero-section_cont_daily-information fontMochiy-pop">
-          <p>February 13</p>
+          <p class="js-getToday"></p>
           <p>Tuesday</p>
           <p><span>temperature(icon) 9°C / 48.2°F</span></p>
           <p>Rainy Percent(icon) 60%</p>
@@ -100,8 +105,8 @@
           <p>77°F</p>
           <p>
             <img
-              src="../images/top/snow.png"
-              alt="weather image"
+              class="js-weatherImage"
+              alt="Weather Icon"
             />
           </p>
           <p>--</p>
@@ -147,5 +152,6 @@
     <footer style="padding: 20px; text-align: center">
       <p>&copy;WeatherAPP</p>
     </footer>
+    <script src="../js/index.js"></script>
   </body>
 </html>
