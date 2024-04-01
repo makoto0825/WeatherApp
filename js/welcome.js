@@ -56,6 +56,7 @@ const LOCAL_STORAGE_KEYS = {
 };
 
 function getLocation() {
+  //TODO: タイムゾーンで北米以外の場所が返ってきたら、エラーメッセージを表示
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -145,8 +146,7 @@ function convertCityToLatLong(cityName) {
       const lat = results[0].geometry.location.lat();
       const lng = results[0].geometry.location.lng();
 
-      localStorage.setItem(LOCAL_STORAGE_KEYS.lat, lat);
-      localStorage.setItem(LOCAL_STORAGE_KEYS.long, lng);
+      return { lat, lng };
     } else {
       alert("Geocode was not successful for the following reason: " + status);
     }
@@ -161,7 +161,13 @@ function submitCity() {
     provinceSelect.options[provinceSelect.selectedIndex].value;
   const selectedCity = citySelect.options[citySelect.selectedIndex].value;
 
-  convertCityToLatLong(`${selectedCity}, ${selectedProvince}, Canada`);
+  const { lat, lng } = convertCityToLatLong(
+    `${selectedCity}, ${selectedProvince}, Canada`
+  );
+
+  localStorage.setItem(LOCAL_STORAGE_KEYS.lat, lat);
+  localStorage.setItem(LOCAL_STORAGE_KEYS.long, lng);
+  //TODO: タイムゾーンを取得してLocalStorageに保存する
 }
 
 document.addEventListener("DOMContentLoaded", function () {
