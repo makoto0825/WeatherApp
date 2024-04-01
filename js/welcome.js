@@ -104,11 +104,36 @@ async function displayProvinceList() {
   const provinceSelect = document.getElementById("js-provinceList");
   provinceCityList = await fetchData("../data/canada-province-city.json");
 
-  provinceCityList.forEach((listItem) => {
+  provinceCityList.innerHTML = "";
+  provinceCityList.forEach((listItem, index) => {
     const option = document.createElement("option");
     option.value = listItem.province.replace(/\s+/g, "-");
     option.text = listItem.province;
     provinceSelect.appendChild(option);
+
+    //Select the first province by default
+    if (index === 0) {
+      displayCityList(listItem.province);
+    }
+  });
+
+  provinceSelect.addEventListener("change", (e) =>
+    displayCityList(e.target.value)
+  );
+}
+
+function displayCityList(selectedProvince) {
+  const citySelect = document.getElementById("js-cityList");
+  const cities = provinceCityList.find(
+    (listItem) => listItem.province === selectedProvince
+  ).city_or_town;
+
+  citySelect.innerHTML = "";
+  cities.forEach((city) => {
+    const option = document.createElement("option");
+    option.value = city.replace(/\s+/g, "-");
+    option.text = city;
+    citySelect.appendChild(option);
   });
 }
 
