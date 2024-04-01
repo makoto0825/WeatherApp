@@ -82,3 +82,18 @@ document.addEventListener("DOMContentLoaded", () => {
     weatherImageElement.src = `../images/weatherIcon/${weatherImageName}.png`;
   })();
 });
+
+//性別の情報を取得する関数
+let gender = "M"; // 初期の性別を設定
+// input要素を取得
+document.addEventListener("DOMContentLoaded", () => {
+  const genderSwitch = document.getElementById("js-genderSwitch");
+  genderSwitch.addEventListener("change", () => {
+    if (genderSwitch.checked) {
+      gender = "F"; // 女性
+    } else {
+      gender = "M"; // 男性
+    }
+    console.log(gender);
+  });
+});
