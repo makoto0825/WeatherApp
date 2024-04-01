@@ -169,7 +169,7 @@
           </button>
         </div>
         <div class="modal_body">
-          <div id="js-selectList" class="form">
+          <div class="form">
             <label class="form_label">
               <span>Province</span>
               <select
@@ -182,10 +182,18 @@
               <span>City</span>
               <select name="city" id="js-cityList" class="form_select"></select>
             </label>
+            <button
+              type="button"
+              id="js-submitCity"
+              class="button primary form_button"
+            >
+              Select
+            </button>
           </div>
         </div>
       </div>
     </div>
     <script src="../js/welcome.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrkeYzcyAiLO6vdS56EXGsTa25O77xtoo"></script>
   </body>
 </html>

@@ -137,6 +137,33 @@ function displayCityList(selectedProvince) {
   });
 }
 
+function convertCityToLatLong(cityName) {
+  const geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode({ address: cityName }, function (results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      const lat = results[0].geometry.location.lat();
+      const lng = results[0].geometry.location.lng();
+
+      localStorage.setItem(LOCAL_STORAGE_KEYS.lat, lat);
+      localStorage.setItem(LOCAL_STORAGE_KEYS.long, lng);
+    } else {
+      alert("Geocode was not successful for the following reason: " + status);
+    }
+  });
+}
+
+function submitCity() {
+  const provinceSelect = document.getElementById("js-provinceList");
+  const citySelect = document.getElementById("js-cityList");
+
+  const selectedProvince =
+    provinceSelect.options[provinceSelect.selectedIndex].value;
+  const selectedCity = citySelect.options[citySelect.selectedIndex].value;
+
+  convertCityToLatLong(`${selectedCity}, ${selectedProvince}, Canada`);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const openCitySelectModalButton = document.getElementById(
     "js-openCitySelectModal"
@@ -155,4 +182,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   displayProvinceList();
+
+  const submitCityButton = document.getElementById("js-submitCity");
+  submitCityButton.addEventListener("click", () => {
+    submitCity();
+    citySelectModal.classList.remove("visible");
+  });
 });
