@@ -118,7 +118,7 @@ async function displayProvinceList() {
   });
 
   provinceSelect.addEventListener("change", (e) =>
-    displayCityList(e.target.value)
+    displayCityList(e.target.value.replace(/-/g, " "))
   );
 }
 
