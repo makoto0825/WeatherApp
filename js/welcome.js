@@ -249,8 +249,13 @@ function submitCity() {
     provinceSelect.options[provinceSelect.selectedIndex].value;
   const selectedCity = citySelect.options[citySelect.selectedIndex].value;
 
-  setLatLongAndTimezoneFromCity(`${selectedCity}, ${selectedProvince}, Canada`);
+  const cityName = `${selectedCity}, ${selectedProvince}, Canada`;
+
+  setLatLongAndTimezoneFromCity(cityName);
   localStorage.setItem(LOCAL_STORAGE_KEYS.city, selectedCity);
+  const cityNameElement = document.getElementById("js-selectedCityName");
+  cityNameElement.innerHTML = cityName;
+  setLocationMenuStatus(true);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
