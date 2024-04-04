@@ -146,7 +146,19 @@ function displayCityList(selectedProvince) {
   });
 }
 
-function setLatLongFromCity(cityName) {
+const GOOGLE_MAP_API_KEY = "AIzaSyBrkeYzcyAiLO6vdS56EXGsTa25O77xtoo";
+
+async function setTimezone(location, utcTimestampInSeconds) {
+  const data = await fetchData(
+    `https://maps.googleapis.com/maps/api/timezone/json?location=${encodeURIComponent(
+      location
+    )}&timestamp=${utcTimestampInSeconds}&key=${GOOGLE_MAP_API_KEY}`
+  );
+  const timezoneName = data.timeZoneId;
+  localStorage.setItem(LOCAL_STORAGE_KEYS.timezone, timezoneName);
+}
+
+function setLatLongAndTimezoneFromCity(cityName) {
   const geocoder = new google.maps.Geocoder();
 
   geocoder.geocode({ address: cityName }, function (results, status) {
@@ -156,6 +168,11 @@ function setLatLongFromCity(cityName) {
 
       localStorage.setItem(LOCAL_STORAGE_KEYS.lat, lat);
       localStorage.setItem(LOCAL_STORAGE_KEYS.long, lng);
+
+      // Set timezone
+      const location = `${lat},${lng}`;
+      const utcTimestampInSeconds = Math.floor(new Date().getTime() / 1000);
+      setTimezone(location, utcTimestampInSeconds);
     } else {
       alert("Geocode was not successful for the following reason: " + status);
     }
@@ -170,8 +187,7 @@ function submitCity() {
     provinceSelect.options[provinceSelect.selectedIndex].value;
   const selectedCity = citySelect.options[citySelect.selectedIndex].value;
 
-  setLatLongFromCity(`${selectedCity}, ${selectedProvince}, Canada`);
-  //TODO: タイムゾーンを取得してLocalStorageに保存する
+  setLatLongAndTimezoneFromCity(`${selectedCity}, ${selectedProvince}, Canada`);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
