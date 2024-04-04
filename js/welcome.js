@@ -53,10 +53,15 @@ window.addEventListener("unload", removeEventListeners);
 const LOCAL_STORAGE_KEYS = {
   lat: "latitude",
   long: "longitude",
+  timezone: "timezone",
 };
 
-function getLocation() {
-  //TODO: タイムゾーンで北米以外の場所が返ってきたら、エラーメッセージを表示
+function setCurrentTimezone() {
+  const timezoneName = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  localStorage.setItem(LOCAL_STORAGE_KEYS.timezone, timezoneName);
+}
+
+function setLocationWithGeolocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -77,7 +82,10 @@ function getLocation() {
 
 document.addEventListener("DOMContentLoaded", function () {
   const getLocationButton = document.getElementById("js-getLocation");
-  getLocationButton.addEventListener("click", getLocation);
+  getLocationButton.addEventListener("click", () => {
+    setCurrentTimezone();
+    setLocationWithGeolocation();
+  });
 });
 
 // ============================================================
