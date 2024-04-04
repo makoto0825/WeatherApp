@@ -47,15 +47,34 @@ const removeEventListeners = () => {
 };
 window.addEventListener("unload", removeEventListeners);
 
-// ==================================
-// Get Location with Geolocation API
-// ==================================
 const LOCAL_STORAGE_KEYS = {
   lat: "latitude",
   long: "longitude",
   city: "city",
   timezone: "timezone",
+  gender: "gender",
 };
+
+// ==================================
+// Select Gender
+// ==================================
+
+document.addEventListener("DOMContentLoaded", function () {
+  //Set the default to "M" if there is no data in the local storage
+  if (!localStorage.getItem(LOCAL_STORAGE_KEYS.gender)) {
+    localStorage.setItem(LOCAL_STORAGE_KEYS.gender, "M");
+  }
+
+  const toggleGenderSwitch = document.getElementById("js-toggleGender");
+  toggleGenderSwitch.addEventListener("change", (e) => {
+    const next = e.target.checked ? "F" : "M";
+    localStorage.setItem(LOCAL_STORAGE_KEYS.gender, next);
+  });
+});
+
+// ==================================
+// Get Location with Geolocation API
+// ==================================
 
 function setLocationLoadingClass(className) {
   const locationMenu = document.getElementById("js-locationLoading");
