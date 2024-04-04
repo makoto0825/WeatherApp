@@ -138,7 +138,7 @@ function displayCityList(selectedProvince) {
   });
 }
 
-function convertCityToLatLong(cityName) {
+function setLatLongFromCity(cityName) {
   const geocoder = new google.maps.Geocoder();
 
   geocoder.geocode({ address: cityName }, function (results, status) {
@@ -146,7 +146,8 @@ function convertCityToLatLong(cityName) {
       const lat = results[0].geometry.location.lat();
       const lng = results[0].geometry.location.lng();
 
-      return { lat, lng };
+      localStorage.setItem(LOCAL_STORAGE_KEYS.lat, lat);
+      localStorage.setItem(LOCAL_STORAGE_KEYS.long, lng);
     } else {
       alert("Geocode was not successful for the following reason: " + status);
     }
@@ -161,12 +162,7 @@ function submitCity() {
     provinceSelect.options[provinceSelect.selectedIndex].value;
   const selectedCity = citySelect.options[citySelect.selectedIndex].value;
 
-  const { lat, lng } = convertCityToLatLong(
-    `${selectedCity}, ${selectedProvince}, Canada`
-  );
-
-  localStorage.setItem(LOCAL_STORAGE_KEYS.lat, lat);
-  localStorage.setItem(LOCAL_STORAGE_KEYS.long, lng);
+  setLatLongFromCity(`${selectedCity}, ${selectedProvince}, Canada`);
   //TODO: タイムゾーンを取得してLocalStorageに保存する
 }
 
