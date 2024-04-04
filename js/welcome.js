@@ -95,77 +95,105 @@ function setLocationMenuStatus(isSelected) {
   }
 }
 
-function setCurrentTimezone() {
-  const timezoneName = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  localStorage.setItem(LOCAL_STORAGE_KEYS.timezone, timezoneName);
+function getCurrentTimezone() {
+  return Intl.DateTimeFormat().resolvedOptions().timeZone;
 }
 
-function setLocationWithGeolocation() {
-  if (navigator.geolocation) {
-    removeLocationLoadingClass("done");
-    removeLocationLoadingClass("visible");
-    setLocationLoadingClass("visible");
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        localStorage.setItem(LOCAL_STORAGE_KEYS.lat, latitude);
-        localStorage.setItem(LOCAL_STORAGE_KEYS.long, longitude);
-        setLocationLoadingClass("done");
-        setCityNameFromLatLng(latitude, longitude);
-        setLocationMenuStatus(true);
-      },
-      () => {
-        alert(
-          "Failed to get your location. Please try again or set the location by selecting the city."
-        );
-        removeLocationLoadingClass("visible");
-      }
-    );
-  } else {
-    alert("Geolocation is not supported by this browser.");
-  }
+function getLocationWithGeolocation() {
+  return new Promise((resolve, reject) => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          resolve({ latitude, longitude });
+        },
+        () => {
+          reject(
+            "Failed to get your location. Please try again or set the location by selecting the city."
+          );
+        }
+      );
+    } else {
+      reject("Geolocation is not supported by this browser.");
+    }
+  });
 }
 
-function setCityNameFromLatLng(latitude, longitude) {
-  const geocoder = new google.maps.Geocoder();
-  const latlng = new google.maps.LatLng(latitude, longitude);
-
-  geocoder.geocode({ latLng: latlng }, function (results, status) {
-    if (status !== google.maps.GeocoderStatus.OK) {
-      console.log("Geocoder failed due to: " + status);
-      return;
+function getCityNameFromLatLng(latitude, longitude) {
+  return new Promise((resolve, reject) => {
+    if (!latitude || !longitude) {
+      reject("Latitude and longitude are required.");
     }
 
-    if (!results.length) {
-      console.log("City name not found.");
-      return;
-    }
+    // Get the name from latitude and longitude using Google Maps Geocoding API
+    // https://developers.google.com/maps/documentation/geocoding
+    const geocoder = new google.maps.Geocoder();
+    const latlng = new google.maps.LatLng(latitude, longitude);
 
-    let cityName = "";
-    for (let i = 0; i < results[0].address_components.length; i++) {
-      const addressComponent = results[0].address_components[i];
-      if (addressComponent.types.includes("locality")) {
-        cityName = addressComponent.long_name;
+    geocoder.geocode({ latLng: latlng }, function (results, status) {
+      if (status !== google.maps.GeocoderStatus.OK) {
+        reject("Geocoder failed due to: " + status);
       }
-      if (addressComponent.types.includes("administrative_area_level_1")) {
-        cityName += ", " + addressComponent.long_name;
-      }
-      if (addressComponent.types.includes("country")) {
-        cityName += ", " + addressComponent.short_name;
-      }
-    }
 
-    localStorage.setItem(LOCAL_STORAGE_KEYS.city, cityName);
-    const cityNameElement = document.getElementById("js-selectedCityName");
-    cityNameElement.innerHTML = cityName;
+      if (!results.length) {
+        reject("City name not found.");
+      }
+
+      let cityName = ""; //FORMAT: City, Province, Country(Short Name) (e.g. Toronto, ON, Canada)
+
+      for (let i = 0; i < results[0].address_components.length; i++) {
+        const addressComponent = results[0].address_components[i];
+
+        //Get the city name
+        if (addressComponent.types.includes("locality")) {
+          cityName = addressComponent.long_name;
+        }
+
+        //Get the province name
+        if (addressComponent.types.includes("administrative_area_level_1")) {
+          cityName += ", " + addressComponent.long_name;
+        }
+
+        //Get the country name
+        if (addressComponent.types.includes("country")) {
+          cityName += ", " + addressComponent.short_name;
+        }
+      }
+      resolve(cityName);
+    });
   });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   const getLocationButton = document.getElementById("js-getLocation");
+  const cityNameElement = document.getElementById("js-selectedCityName");
+
   getLocationButton.addEventListener("click", () => {
-    setCurrentTimezone();
-    setLocationWithGeolocation();
+    //Reset class first, then add the class to show the loading
+    removeLocationLoadingClass("done");
+    removeLocationLoadingClass("visible");
+    setLocationLoadingClass("visible");
+
+    const timezone = getCurrentTimezone();
+    localStorage.setItem(LOCAL_STORAGE_KEYS.timezone, timezone);
+
+    getLocationWithGeolocation()
+      .then(({ latitude, longitude }) => {
+        localStorage.setItem(LOCAL_STORAGE_KEYS.lat, latitude);
+        localStorage.setItem(LOCAL_STORAGE_KEYS.long, longitude);
+
+        getCityNameFromLatLng(latitude, longitude).then((cityName) => {
+          localStorage.setItem(LOCAL_STORAGE_KEYS.city, cityName);
+          cityNameElement.innerHTML = cityName;
+        });
+
+        setLocationLoadingClass("done");
+        setLocationMenuStatus(true);
+      })
+      .catch((e) => {
+        alert(e);
+        removeLocationLoadingClass("visible");
+      });
   });
 });
 
@@ -229,34 +257,39 @@ function displayCityList(selectedProvince) {
 
 const GOOGLE_MAP_API_KEY = "AIzaSyBrkeYzcyAiLO6vdS56EXGsTa25O77xtoo";
 
-async function setTimezone(location, utcTimestampInSeconds) {
-  const data = await fetchData(
-    `https://maps.googleapis.com/maps/api/timezone/json?location=${encodeURIComponent(
-      location
-    )}&timestamp=${utcTimestampInSeconds}&key=${GOOGLE_MAP_API_KEY}`
-  );
-  const timezoneName = data.timeZoneId;
-  localStorage.setItem(LOCAL_STORAGE_KEYS.timezone, timezoneName);
+async function getTimezone(location, utcTimestampInSeconds) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      // Get the timezone from the location using Google Maps Timezone API
+      // https://developers.google.com/maps/documentation/timezone/overview
+      const data = await fetchData(
+        `https://maps.googleapis.com/maps/api/timezone/json?location=${encodeURIComponent(
+          location
+        )}&timestamp=${utcTimestampInSeconds}&key=${GOOGLE_MAP_API_KEY}`
+      );
+      resolve(data.timeZoneId); //e.g. America/Toronto
+    } catch (error) {
+      reject(error);
+    }
+  });
 }
 
-function setLatLongAndTimezoneFromCity(cityName) {
-  const geocoder = new google.maps.Geocoder();
-
-  geocoder.geocode({ address: cityName }, function (results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-      const lat = results[0].geometry.location.lat();
-      const lng = results[0].geometry.location.lng();
-
-      localStorage.setItem(LOCAL_STORAGE_KEYS.lat, lat);
-      localStorage.setItem(LOCAL_STORAGE_KEYS.long, lng);
-
-      // Set timezone
-      const location = `${lat},${lng}`;
-      const utcTimestampInSeconds = Math.floor(new Date().getTime() / 1000);
-      setTimezone(location, utcTimestampInSeconds);
-    } else {
-      alert("Geocode was not successful for the following reason: " + status);
-    }
+function getLatLongFromCityName(cityName) {
+  return new Promise((resolve, reject) => {
+    // Get the latitude and longitude from the city name using Google Maps Geocoding API
+    // https://developers.google.com/maps/documentation/geocoding
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address: cityName }, function (results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        const latitude = results[0].geometry.location.lat();
+        const longitude = results[0].geometry.location.lng();
+        resolve({ latitude, longitude });
+      } else {
+        reject(
+          "Geocode was not successful for the following reason: " + status
+        );
+      }
+    });
   });
 }
 
@@ -268,13 +301,24 @@ function submitCity() {
     provinceSelect.options[provinceSelect.selectedIndex].value;
   const selectedCity = citySelect.options[citySelect.selectedIndex].value;
 
-  const cityName = `${selectedCity}, ${selectedProvince}, Canada`;
+  const cityName = `${selectedCity}, ${selectedProvince}, Canada`; //NOTE: Selection is limited to Canada only
 
-  setLatLongAndTimezoneFromCity(cityName);
   localStorage.setItem(LOCAL_STORAGE_KEYS.city, selectedCity);
   const cityNameElement = document.getElementById("js-selectedCityName");
   cityNameElement.innerHTML = cityName;
-  setLocationMenuStatus(true);
+
+  getLatLongFromCityName(cityName).then(({ latitude, longitude }) => {
+    localStorage.setItem(LOCAL_STORAGE_KEYS.lat, latitude);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.long, longitude);
+
+    const location = `${latitude},${longitude}`;
+    const utcTimestampInSeconds = Math.floor(new Date().getTime() / 1000);
+    getTimezone(location, utcTimestampInSeconds).then((tz) => {
+      localStorage.setItem(LOCAL_STORAGE_KEYS.timezone, tz);
+    });
+
+    setLocationMenuStatus(true);
+  });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
