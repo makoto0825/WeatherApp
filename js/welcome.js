@@ -111,7 +111,7 @@ function setLocationWithGeolocation() {
         localStorage.setItem(LOCAL_STORAGE_KEYS.lat, latitude);
         localStorage.setItem(LOCAL_STORAGE_KEYS.long, longitude);
         setLocationLoadingClass("done");
-        setCityNameFromLatLang(latitude, longitude);
+        setCityNameFromLatLng(latitude, longitude);
         setLocationMenuStatus(true);
       },
       () => {
@@ -126,7 +126,7 @@ function setLocationWithGeolocation() {
   }
 }
 
-function setCityNameFromLatLang(latitude, longitude) {
+function setCityNameFromLatLng(latitude, longitude) {
   const geocoder = new google.maps.Geocoder();
   const latlng = new google.maps.LatLng(latitude, longitude);
 
