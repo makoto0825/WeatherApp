@@ -56,6 +56,16 @@ const LOCAL_STORAGE_KEYS = {
   timezone: "timezone",
 };
 
+function setLocationLoadingClass(className) {
+  const locationMenu = document.getElementById("js-locationLoading");
+  locationMenu.classList.add(className);
+}
+
+function removeLocationLoadingClass(className) {
+  const locationMenu = document.getElementById("js-locationLoading");
+  locationMenu.classList.remove(className);
+}
+
 function setCurrentTimezone() {
   const timezoneName = Intl.DateTimeFormat().resolvedOptions().timeZone;
   localStorage.setItem(LOCAL_STORAGE_KEYS.timezone, timezoneName);
@@ -63,16 +73,21 @@ function setCurrentTimezone() {
 
 function setLocationWithGeolocation() {
   if (navigator.geolocation) {
+    removeLocationLoadingClass("done");
+    removeLocationLoadingClass("visible");
+    setLocationLoadingClass("visible");
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
         localStorage.setItem(LOCAL_STORAGE_KEYS.lat, latitude);
         localStorage.setItem(LOCAL_STORAGE_KEYS.long, longitude);
+        setLocationLoadingClass("done");
       },
       () => {
         alert(
           "Failed to get your location. Please try again or set the location by selecting the city."
         );
+        removeLocationLoadingClass("visible");
       }
     );
   } else {

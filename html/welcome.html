@@ -90,7 +90,7 @@
                   Help us tailor your weather forecasts by setting your
                   location.
                 </p>
-                <div class="location-button-area">
+                <div class="location_button_area">
                   <button
                     id="js-getLocation"
                     class="button white"
@@ -108,7 +108,7 @@
                     </div>
                   </div>
                 </div>
-                <p class="location-text">
+                <p class="location_text">
                   or
                   <button id="js-openCitySelectModal" class="text-button">
                     Select Manually
@@ -156,6 +156,15 @@
     <footer class="footer">
       <p>&copy;WeatherApp</p>
     </footer>
+    <div id="js-locationLoading" class="loading_modal">
+      <div class="content_inprogress">
+        <p>Loading location...</p>
+        <div class="loader"></div>
+      </div>
+      <div class="content_done">
+        <p>Success!! 👍</p>
+      </div>
+    </div>
     <div id="js-citySelectModal" class="modal">
       <div class="modal_content">
         <div class="modal_header">
