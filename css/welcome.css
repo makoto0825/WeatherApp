@@ -383,6 +383,27 @@ h6 {
   }
 }
 
+.location_menu {
+  position: relative;
+}
+
+.location_selected {
+  display: none;
+}
+
+.location_menu.selected .location_selected {
+  display: flex;
+  gap: 16px;
+  position: absolute;
+  inset: 0;
+  font-weight: bold;
+}
+
+.location_menu.selected .location_selecting {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .location_button_area {
   margin: 24px 0 8px;
   display: flex;

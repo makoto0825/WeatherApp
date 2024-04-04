@@ -53,6 +53,7 @@ window.addEventListener("unload", removeEventListeners);
 const LOCAL_STORAGE_KEYS = {
   lat: "latitude",
   long: "longitude",
+  city: "city",
   timezone: "timezone",
 };
 
@@ -64,6 +65,15 @@ function setLocationLoadingClass(className) {
 function removeLocationLoadingClass(className) {
   const locationMenu = document.getElementById("js-locationLoading");
   locationMenu.classList.remove(className);
+}
+
+function setLocationMenuStatus(isSelected) {
+  const locationMenu = document.getElementById("js-locationMenu");
+  if (isSelected) {
+    locationMenu.classList.add("selected");
+  } else {
+    locationMenu.classList.remove("selected");
+  }
 }
 
 function setCurrentTimezone() {
@@ -82,6 +92,8 @@ function setLocationWithGeolocation() {
         localStorage.setItem(LOCAL_STORAGE_KEYS.lat, latitude);
         localStorage.setItem(LOCAL_STORAGE_KEYS.long, longitude);
         setLocationLoadingClass("done");
+        setCityNameFromLatLang(latitude, longitude);
+        setLocationMenuStatus(true);
       },
       () => {
         alert(
@@ -93,6 +105,41 @@ function setLocationWithGeolocation() {
   } else {
     alert("Geolocation is not supported by this browser.");
   }
+}
+
+function setCityNameFromLatLang(latitude, longitude) {
+  const geocoder = new google.maps.Geocoder();
+  const latlng = new google.maps.LatLng(latitude, longitude);
+
+  geocoder.geocode({ latLng: latlng }, function (results, status) {
+    if (status !== google.maps.GeocoderStatus.OK) {
+      console.log("Geocoder failed due to: " + status);
+      return;
+    }
+
+    if (!results.length) {
+      console.log("City name not found.");
+      return;
+    }
+
+    let cityName = "";
+    for (let i = 0; i < results[0].address_components.length; i++) {
+      const addressComponent = results[0].address_components[i];
+      if (addressComponent.types.includes("locality")) {
+        cityName = addressComponent.long_name;
+      }
+      if (addressComponent.types.includes("administrative_area_level_1")) {
+        cityName += ", " + addressComponent.long_name;
+      }
+      if (addressComponent.types.includes("country")) {
+        cityName += ", " + addressComponent.short_name;
+      }
+    }
+
+    localStorage.setItem(LOCAL_STORAGE_KEYS.city, cityName);
+    const cityNameElement = document.getElementById("js-selectedCityName");
+    cityNameElement.innerHTML = cityName;
+  });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -203,6 +250,7 @@ function submitCity() {
   const selectedCity = citySelect.options[citySelect.selectedIndex].value;
 
   setLatLongAndTimezoneFromCity(`${selectedCity}, ${selectedProvince}, Canada`);
+  localStorage.setItem(LOCAL_STORAGE_KEYS.city, selectedCity);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
