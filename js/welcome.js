@@ -345,4 +345,9 @@ document.addEventListener("DOMContentLoaded", function () {
     submitCity();
     citySelectModal.classList.remove("visible");
   });
+
+  const reselectCityButton = document.getElementById("js-reselectCity");
+  reselectCityButton.addEventListener("click", () => {
+    setLocationMenuStatus(false);
+  });
 });

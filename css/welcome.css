@@ -392,11 +392,15 @@ h6 {
 }
 
 .location_menu.selected .location_selected {
-  display: flex;
-  gap: 16px;
   position: absolute;
   inset: 0;
   font-weight: bold;
+  display: block;
+}
+
+.location_selected .flex {
+  display: flex;
+  gap: 16px;
 }
 
 .location_menu.selected .location_selecting {
