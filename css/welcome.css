@@ -587,3 +587,173 @@ h6 {
   display: block;
   margin: 24px 0 0 auto;
 }
+
+/* First Animation */
+.welcome_animation {
+  position: fixed;
+  inset: 0;
+  background-color: #fcebff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 32px;
+  pointer-events: none;
+  animation: fadeout 0.64s ease-out forwards 2.8s;
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animation_frame {
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.welcome_logo {
+  font-size: 24px;
+  color: #5164f0;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: text 0.3s ease-out forwards 0.32s;
+}
+
+@keyframes text {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.anim_sun {
+  background-color: #f9db62;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: sun 2.8s linear forwards 0.32s;
+  opacity: 0;
+}
+
+@keyframes sun {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  10% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  32% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  40% {
+    transform: translate(-20px, -20px);
+    opacity: 1;
+  }
+  44% {
+    transform: translate(-14px, -14px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-14px, -14px);
+    opacity: 1;
+  }
+}
+
+@keyframes cloud {
+  0% {
+    transform: translate(18px, 14px);
+    opacity: 0;
+  }
+  30% {
+    transform: translate(18px, 14px);
+    opacity: 0;
+  }
+  44% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+.anim_cloud {
+  width: 120px;
+  height: 44px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+
+  opacity: 0;
+  animation: cloud 2.8s linear forwards 0.32s;
+}
+
+.anim_cloud span {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.anim_cloud span:nth-child(1) {
+  width: 40px;
+  height: 40px;
+  top: -20px;
+  left: 18px;
+}
+
+.anim_cloud span:nth-child(2) {
+  width: 54px;
+  height: 54px;
+  top: -34px;
+  left: 50px;
+}
+
+.anim_cloud span:nth-child(3) {
+  background-color: #fff;
+  border-radius: 60px;
+  width: 120px;
+  height: 44px;
+  left: 0;
+  bottom: 0;
+}
+
+.anim_cloud::before,
+.anim_cloud::after {
+  content: "";
+  background-color: #fcebff;
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.anim_cloud::before {
+  width: 56px;
+  height: 56px;
+  top: -28px;
+  left: 10px;
+}
+
+.anim_cloud::after {
+  width: 70px;
+  height: 70px;
+  top: -42px;
+  left: 42px;
+}
