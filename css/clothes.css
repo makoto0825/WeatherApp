@@ -39,9 +39,8 @@ h2 {
   font-family: "Mochiy Pop One", sans-serif;
   font-weight: 400;
 }
-#clothesImg {
+.clothesImg {
   width: 50%;
-  margin-bottom: 8%;
 }
 .weatherImage {
   position: absolute;
