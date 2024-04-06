@@ -109,7 +109,10 @@
                   </div>
                 </div>
                 <p class="location-text">
-                  or <button class="text-button">Select Manually</button>
+                  or
+                  <button id="js-openCitySelectModal" class="text-button">
+                    Select Manually
+                  </button>
                 </p>
                 <div class="onboarding_step-controller">
                   <button class="button primary js-nextSlide" type="button">
@@ -153,7 +156,44 @@
     <footer class="footer">
       <p>&copy;WeatherApp</p>
     </footer>
-
+    <div id="js-citySelectModal" class="modal">
+      <div class="modal_content">
+        <div class="modal_header">
+          <h2 class="modal_title font-title">Select Your City</h2>
+          <button
+            id="js-closeCitySelectModal"
+            class="modal_close"
+            type="button"
+          >
+            &times;
+          </button>
+        </div>
+        <div class="modal_body">
+          <div class="form">
+            <label class="form_label">
+              <span>Province</span>
+              <select
+                name="province"
+                id="js-provinceList"
+                class="form_select"
+              ></select>
+            </label>
+            <label class="form_label">
+              <span>City</span>
+              <select name="city" id="js-cityList" class="form_select"></select>
+            </label>
+            <button
+              type="button"
+              id="js-submitCity"
+              class="button primary form_button"
+            >
+              Select
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="../js/welcome.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrkeYzcyAiLO6vdS56EXGsTa25O77xtoo"></script>
   </body>
 </html>

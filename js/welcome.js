@@ -56,6 +56,7 @@ const LOCAL_STORAGE_KEYS = {
 };
 
 function getLocation() {
+  //TODO: タイムゾーンで北米以外の場所が返ってきたら、エラーメッセージを表示
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -77,4 +78,116 @@ function getLocation() {
 document.addEventListener("DOMContentLoaded", function () {
   const getLocationButton = document.getElementById("js-getLocation");
   getLocationButton.addEventListener("click", getLocation);
+});
+
+// ============================================================
+// Get Location Manually by Selecting Country, State, and City
+// ============================================================
+async function fetchData(source) {
+  try {
+    const response = await fetch(source);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    return await response.json();
+  } catch (error) {
+    window.alert(
+      "There was a problem with retrieving data. Please refresh the page.",
+      error
+    );
+  }
+}
+
+let provinceCityList = [];
+
+async function displayProvinceList() {
+  const provinceSelect = document.getElementById("js-provinceList");
+  provinceCityList = await fetchData("../data/canada-province-city.json");
+
+  provinceCityList.innerHTML = "";
+  provinceCityList.forEach((listItem, index) => {
+    const option = document.createElement("option");
+    option.value = listItem.province.replace(/\s+/g, "-");
+    option.text = listItem.province;
+    provinceSelect.appendChild(option);
+
+    //Select the first province by default
+    if (index === 0) {
+      displayCityList(listItem.province);
+    }
+  });
+
+  provinceSelect.addEventListener("change", (e) =>
+    displayCityList(e.target.value.replace(/-/g, " "))
+  );
+}
+
+function displayCityList(selectedProvince) {
+  const citySelect = document.getElementById("js-cityList");
+  const cities = provinceCityList.find(
+    (listItem) => listItem.province === selectedProvince
+  ).city_or_town;
+
+  citySelect.innerHTML = "";
+  cities.forEach((city) => {
+    const option = document.createElement("option");
+    option.value = city.replace(/\s+/g, "-");
+    option.text = city;
+    citySelect.appendChild(option);
+  });
+}
+
+function setLatLongFromCity(cityName) {
+  const geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode({ address: cityName }, function (results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      const lat = results[0].geometry.location.lat();
+      const lng = results[0].geometry.location.lng();
+
+      localStorage.setItem(LOCAL_STORAGE_KEYS.lat, lat);
+      localStorage.setItem(LOCAL_STORAGE_KEYS.long, lng);
+    } else {
+      alert("Geocode was not successful for the following reason: " + status);
+    }
+  });
+}
+
+function submitCity() {
+  const provinceSelect = document.getElementById("js-provinceList");
+  const citySelect = document.getElementById("js-cityList");
+
+  const selectedProvince =
+    provinceSelect.options[provinceSelect.selectedIndex].value;
+  const selectedCity = citySelect.options[citySelect.selectedIndex].value;
+
+  setLatLongFromCity(`${selectedCity}, ${selectedProvince}, Canada`);
+  //TODO: タイムゾーンを取得してLocalStorageに保存する
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const openCitySelectModalButton = document.getElementById(
+    "js-openCitySelectModal"
+  );
+  const citySelectModal = document.getElementById("js-citySelectModal");
+  const closeCitySelectModalButton = document.getElementById(
+    "js-closeCitySelectModal"
+  );
+
+  openCitySelectModalButton.addEventListener("click", () => {
+    citySelectModal.classList.add("visible");
+  });
+
+  closeCitySelectModalButton.addEventListener("click", () => {
+    citySelectModal.classList.remove("visible");
+  });
+
+  displayProvinceList();
+
+  const submitCityButton = document.getElementById("js-submitCity");
+  submitCityButton.addEventListener("click", () => {
+    submitCity();
+    citySelectModal.classList.remove("visible");
+  });
 });
