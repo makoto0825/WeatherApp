@@ -35,7 +35,7 @@ function getToday() {
     const URL =
       // "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&hourly=weather_code,temperature_2m&forecast_days=1";
       // "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m";
-      "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m&forecast_days=1";
+      "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&hourly=temperature_2m&forecast_days=1";
       try {
       const response = await fetch(URL);
       if (!response.ok) {
@@ -57,15 +57,6 @@ function getToday() {
     todayDom.innerHTML = getToday();
     dayOfWeekDom.innerHTML = getDayOfWeek();
   });
-
-
-  // document.addEventListener("DOMContentLoaded", () => {
-  //   const 
-
-  // });
-
-  // TODO 降水確率
-
 
   // 天気のアイコンを表示する
   const WeatherIconObj = {
@@ -113,10 +104,15 @@ function getToday() {
       const todayTempMax = WeatherInfo.daily.temperature_2m_max[0];
       const todayTempMin = WeatherInfo.daily.temperature_2m_min[0];
       //TODO改行されない。一旦華氏のみ表示
-      const temperatureText = `temperature(icon) ${todayTempMax}°C / ${todayTempMin}°C`;
+      const temperatureText = `temperature  ${todayTempMax}°C / ${todayTempMin}°C`;
       // const temperatureText = `temperature(icon) ${todayTempMax}°C / ${todayTempMin}°C\n ${((todayTempMax * 9/5) + 32).toFixed(1)}°F / ${((todayTempMin * 9/5) + 32).toFixed(1)}°F`;
       
       todayTemperatureElement.textContent = temperatureText;
+
+      // TODO 降水確率
+      const todayPrecipitationElement = document.getElementsByClassName("js-getTodayPrecipitation")[0];
+      const todayPrecipitation = WeatherInfo.daily.precipitation_probability_max[0];
+      todayPrecipitationElement.textContent = `Rainy Percent  ${todayPrecipitation}%`;
 
       console.log("ーー最高・最低気温ーー");
       console.log(todayTempMax)

@@ -16,6 +16,9 @@ h6 {
     display: flex;
     margin: 70px 35px 100px 50px;
 }
+.hero-image-content{
+    width: 55%;
+}
 
 .hero-image-section { 
     position: relative;
@@ -30,6 +33,7 @@ h6 {
 
 .hero-image-section{
     height: 540px;
+    padding: 0 30px 0 30px;
 }
 
 .hero-section_contents{
