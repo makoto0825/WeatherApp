@@ -33,9 +33,7 @@ function getToday() {
   //天気の情報を取得する関数
   async function getWeather() {
     const URL =
-      // "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&hourly=weather_code,temperature_2m&forecast_days=1";
-      // "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m";
-      "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&hourly=temperature_2m&forecast_days=1";
+      "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&hourly=precipitation_probability,temperature_2m,weather_code&forecast_days=1";
       try {
       const response = await fetch(URL);
       if (!response.ok) {
@@ -92,30 +90,70 @@ function getToday() {
     (async () => {
       const WeatherInfo = await getWeather();
       const weatherImageElement = document.getElementsByClassName("js-weatherImage")[0];
+      const setWeatherImage = (weatherCode) => {
+        return `../images/weatherIcon/${WeatherIconObj[weatherCode]}`;
+      };
       const todayWeather = WeatherInfo.daily.weather_code[0];
-      const weatherImageName = WeatherIconObj[todayWeather];
-      console.log("------------"); // TODO 後で消す
-      console.log("本日の天気APIのWeatherIconObj:" + todayWeather); // TODO 後で消す
+      const hourlyWeather = WeatherInfo.hourly.weather_code[0];
+      const todayWeatherImage = setWeatherImage(todayWeather);
+      const hourlyWeatherImage = setWeatherImage(hourlyWeather);
       // 画像のパスを設定
-      weatherImageElement.src = `../images/weatherIcon/${weatherImageName}`;
-
-      //気温を取得
+      weatherImageElement.src = todayWeatherImage;
+      weatherImageElement.src = hourlyWeatherImage;
+      
+      //Today's precipitation probability
+      const todayPrecipitationElement = document.getElementsByClassName("js-getTodayPrecipitation")[0];
+      const todayPrecipitation = WeatherInfo.daily.precipitation_probability_max[0];
+      todayPrecipitationElement.textContent = `Rainy Percent  ${todayPrecipitation}%`;
+      
+      // Today's high and low temperatures
       const todayTemperatureElement = document.getElementsByClassName("js-getTodayTemperature")[0];
       const todayTempMax = WeatherInfo.daily.temperature_2m_max[0];
       const todayTempMin = WeatherInfo.daily.temperature_2m_min[0];
       //TODO改行されない。一旦華氏のみ表示
-      const temperatureText = `temperature  ${todayTempMax}°C / ${todayTempMin}°C`;
+      const temperatureText = `temperature  ${todayTempMax}°C/ ${todayTempMin}°C`;
       // const temperatureText = `temperature(icon) ${todayTempMax}°C / ${todayTempMin}°C\n ${((todayTempMax * 9/5) + 32).toFixed(1)}°F / ${((todayTempMin * 9/5) + 32).toFixed(1)}°F`;
-      
       todayTemperatureElement.textContent = temperatureText;
+      
+      //Get value of Morning 6AM, Afternoon 12PM, Evening 18PM, Overnight 24PM
+      const hourlyTemperatures = WeatherInfo.hourly.temperature_2m;
+      const hourlyWeatherCodes = WeatherInfo.hourly.weather_code;
+      const hourlyPrecipitation = WeatherInfo.hourly.precipitation_probability;
+      
+      const hourlyWeatherCodesValues = [hourlyWeatherCodes[5], hourlyWeatherCodes[11], hourlyWeatherCodes[17], hourlyWeatherCodes[23]];
+      const hourlyPrecipitationValues = [hourlyPrecipitation[5], hourlyPrecipitation[11], hourlyPrecipitation[17], hourlyPrecipitation[23]];
+      const temperatureValues = [hourlyTemperatures[5], hourlyTemperatures[11], hourlyTemperatures[17], hourlyTemperatures[23]];
+      const timesOfDay = ["Morning", "Afternoon", "Evening", "Overnight"];
+      const timeOfDayElements = document.querySelectorAll(".js-timeOfDay");
+      const tempCelsiusElements = document.querySelectorAll(".js-tempCelsius");
+      const tempFahrenheitElements = document.querySelectorAll(".js-tempFahrenheit");
+      const timeWeatherImageElements = document.querySelectorAll(".js-timeWeatherImage");
+      const timePrecipitationElements = document.querySelectorAll(".js-timePrecipitation");
+      
+      const convertToFahrenheit = (celsius) => {
+        return (celsius * 9/5) + 32;
+      };
 
-      // TODO 降水確率
-      const todayPrecipitationElement = document.getElementsByClassName("js-getTodayPrecipitation")[0];
-      const todayPrecipitation = WeatherInfo.daily.precipitation_probability_max[0];
-      todayPrecipitationElement.textContent = `Rainy Percent  ${todayPrecipitation}%`;
+      timesOfDay.forEach((time, index) => {
+        timeOfDayElements[index].textContent = time;
+      });
+      
+      tempCelsiusElements.forEach((element, index) => {
+        element.textContent = `${temperatureValues[index]}°C`;
+      });
 
-      console.log("ーー最高・最低気温ーー");
-      console.log(todayTempMax)
-      console.log(todayTempMin)
+      tempFahrenheitElements.forEach((element, index) => {
+        const fahrenheitValue = convertToFahrenheit(temperatureValues[index]);
+        element.textContent = `${fahrenheitValue.toFixed(1)}°F`;
+      })
+
+      hourlyWeatherCodesValues.forEach((weatherCode, index) => {
+        timeWeatherImageElements[index].src = setWeatherImage(weatherCode);;
+      });
+
+      hourlyPrecipitationValues.forEach((precipitation, index) => {
+        timePrecipitationElements[index].textContent = `${precipitation} %`
+      });
+
     })();
   });
