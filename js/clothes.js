@@ -59,30 +59,10 @@ async function getWeather() {
     console.error(error); //何かしらのエラーが発生した場合はエラーメッセージを表示する
   }
 }
-//APIで取得した気温をグローバル変数に設定する関数
-const updateTemp = (newTemp) => {
-  temperature = newTemp;
-};
 
 //===================Program start==============================================
 //性別の情報を取得する関数
 let gender = "M"; // 初期の性別を設定
-
-
-// genderの切り替え
-document.addEventListener("DOMContentLoaded", () => {
-  let temperature; // 気温
-  const genderSwitch = document.getElementById("js-genderSwitch");
-  genderSwitch.addEventListener("change", () => {
-    if (genderSwitch.checked) {
-      gender = "F"; // 女性
-    } else {
-      gender = "M"; // 男性
-    }
-    updateClotheText(temperature, gender); //
-  });
-  console.log(updateClotheText(temperature, gender));
-});
 
 //現在の日付を表示する
 document.addEventListener("DOMContentLoaded", () => {
@@ -134,8 +114,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const WeatherInfo = await getWeather();
     const todayWeather = WeatherInfo.daily.weather_code[0];
     const todayMaxTemp = WeatherInfo.daily.temperature_2m_max[0];
-    // 外部変数を更新する
-    updateTemp(todayMaxTemp);
+    const temperature = todayMaxTemp; // 気温
+
+    //性別の切り替え
+    const genderSwitch = document.getElementById("js-genderSwitch");
+    genderSwitch.addEventListener("change", () => {
+      if (genderSwitch.checked) {
+        gender = "F"; // 女性
+      } else {
+        gender = "M"; // 男性
+      }
+      updateClotheText(temperature, gender); //
+    });
 
     //天気のアイコン画像を表示する
     const weatherImageName = WeatherIconObj[todayWeather];
