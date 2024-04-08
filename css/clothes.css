@@ -16,7 +16,7 @@ h1 {
 }
 .content {
   margin: 0 auto;
-  padding: 1%;
+  padding: 24px;
   background: linear-gradient(to bottom right, #dc63e5 0%, #5164f0 100%);
   /* width: clamp(18.75rem, 10.417rem + 41.67vw, 62.5rem); */
   width: clamp(18.75rem, 10.417rem + 41.67vw, 62.5rem);
@@ -40,6 +40,10 @@ h2 {
   color: black;
   width: 80%;
   font-size: clamp(0.938rem, 0.759rem + 0.89vw, 1.875rem);
+
+  @media screen and (max-width: 835px) {
+    width: 100%;
+  }
 }
 .fontMochiy-pop {
   font-family: "Mochiy Pop One", sans-serif;
