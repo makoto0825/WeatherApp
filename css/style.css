@@ -14,33 +14,26 @@ h6 {
 
 #hero-image{
     display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 70px 35px 100px 50px;
 }
 .hero-image-content{
-    width: 55%;
+    width: 50%;
 }
 
 .hero-image-section { 
     position: relative;
     left: 0;
-    width: 95%;
-    height: 70vh;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: top center;
-    margin-bottom: 30px;
-}
-
-.hero-image-section{
-    height: 540px;
+    width: 75%;
+    height: auto;
     padding: 0 30px 0 30px;
+    margin: 0 auto;
+    display: block;
 }
 
 .hero-section_contents{
-    width: 45%;
-    padding-left: 45px;
-    padding-top: 100px;
-
+    flex: 1;
 }
 
 .hero-section_contents h1{
@@ -82,14 +75,24 @@ h6 {
     padding-top: 60px; 
 }
 
-.weather-item, .detailed-weather-item {
+.weather-item {
     flex: 1;
     text-align: center;
-    padding: 10px
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-item-img {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
 }
 
 .weather-item img{
-    max-width: 100%;
+    width: 64%;
     height: auto;
 }
 
@@ -157,7 +160,6 @@ h6 {
     #hero-image{
         display: flex;
         margin: 70px 50px 50px;
-        height: 335px;
     }
     .hero-image-section{
         height: auto;
@@ -168,9 +170,6 @@ h6 {
 }
 
 @media screen and (max-width: 600px) {
-    #hero-image{
-        height: 190px;
-    }
     .weather-item {
         margin-bottom: 20px;
     }
@@ -190,9 +189,8 @@ h6 {
 
 @media screen and (max-width: 480px) {
     #hero-image{
-        height: 200px;
         margin: 30px 20px 0 20px;
-        padding-bottom: 280px;
+        padding-bottom: 80px;
         padding-top: 20px;
     }
     
