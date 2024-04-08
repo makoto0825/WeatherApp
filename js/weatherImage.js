@@ -1,7 +1,7 @@
 // Refer "WMO Weather interpretation codes (WW)" in
 // https://open-meteo.com/en/docs
 
-export const ICON_WEATHER_CODE_MAP = {
+const ICON_WEATHER_CODE_MAP = {
   0: "clear", // Clear sky
   1: "clear", // Mainly clear
   2: "partly-cloudy", // Partly cloudy
@@ -30,4 +30,8 @@ export const ICON_WEATHER_CODE_MAP = {
   95: "thunder-light", // Thunderstorm slight
   96: "thunder-heavy", // Thunderstorm with slight hail
   99: "thunder-heavy", // Thunderstorm with heavy hail
+};
+
+export const getWeatherImage = (weatherCode) => {
+  return `../images/weatherIcon/${ICON_WEATHER_CODE_MAP[weatherCode]}.svg`;
 };

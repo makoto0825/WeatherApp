@@ -1,4 +1,4 @@
-import { ICON_WEATHER_CODE_MAP } from "./iconWeatherCodeMap.js";
+import { getWeatherImage } from "./weatherImage.js";
 
 //今日の日付を取得する関数:フォーマット例「January 1」
 function getToday() {
@@ -57,10 +57,6 @@ function getToday() {
     todayDom.innerHTML = getToday();
     dayOfWeekDom.innerHTML = getDayOfWeek();
   });
-
-  const getWeatherImage = (weatherCode) => {
-    return `../images/weatherIcon/${ICON_WEATHER_CODE_MAP[weatherCode]}.svg`;
-  };
 
   document.addEventListener("DOMContentLoaded", () => {
     (async () => {
