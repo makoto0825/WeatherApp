@@ -94,26 +94,21 @@ function getToday() {
         return `../images/weatherIcon/${WeatherIconObj[weatherCode]}`;
       };
       const todayWeather = WeatherInfo.daily.weather_code[0];
-      const hourlyWeather = WeatherInfo.hourly.weather_code[0];
       const todayWeatherImage = setWeatherImage(todayWeather);
-      const hourlyWeatherImage = setWeatherImage(hourlyWeather);
       // 画像のパスを設定
       weatherImageElement.src = todayWeatherImage;
-      weatherImageElement.src = hourlyWeatherImage;
       
       //Today's precipitation probability
       const todayPrecipitationElement = document.getElementsByClassName("js-getTodayPrecipitation")[0];
       const todayPrecipitation = WeatherInfo.daily.precipitation_probability_max[0];
-      todayPrecipitationElement.textContent = `Rainy Percent  ${todayPrecipitation}%`;
+      todayPrecipitationElement.innerHTML = `Rainy Percent&nbsp;  ${todayPrecipitation}%`;
       
       // Today's high and low temperatures
       const todayTemperatureElement = document.getElementsByClassName("js-getTodayTemperature")[0];
       const todayTempMax = WeatherInfo.daily.temperature_2m_max[0];
       const todayTempMin = WeatherInfo.daily.temperature_2m_min[0];
-      //TODO改行されない。一旦華氏のみ表示
-      const temperatureText = `temperature  ${todayTempMax}°C/ ${todayTempMin}°C`;
-      // const temperatureText = `temperature(icon) ${todayTempMax}°C / ${todayTempMin}°C\n ${((todayTempMax * 9/5) + 32).toFixed(1)}°F / ${((todayTempMin * 9/5) + 32).toFixed(1)}°F`;
-      todayTemperatureElement.textContent = temperatureText;
+      const temperatureText = `${todayTempMax}°C / ${todayTempMin}°C<br> ${((todayTempMax * 9/5) + 32).toFixed(1)}°F / ${((todayTempMin * 9/5) + 32).toFixed(1)}°F`;
+      todayTemperatureElement.innerHTML = temperatureText;
       
       //Get value of Morning 6AM, Afternoon 12PM, Evening 18PM, Overnight 24PM
       const hourlyTemperatures = WeatherInfo.hourly.temperature_2m;

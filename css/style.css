@@ -64,6 +64,10 @@ h6 {
     justify-content: space-around;
 }
 
+.temperature-content{
+    display: flex;
+}
+
 .weather-widget{
     text-align: center;
     margin-bottom: 50px;
