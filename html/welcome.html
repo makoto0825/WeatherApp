@@ -90,30 +90,47 @@
                   Help us tailor your weather forecasts by setting your
                   location.
                 </p>
-                <div class="location-button-area">
-                  <button
-                    id="js-getLocation"
-                    class="button white"
-                    type="button"
-                  >
-                    Get My Location
-                  </button>
-                  <div class="tooltip_wrapper">
-                    <div class="icon-button">?</div>
-                    <div class="tooltip">
-                      <p>
-                        Click "Allow Location Access" to get your location or
-                        enter it manually.
-                      </p>
+                <div id="js-locationMenu" class="location_menu">
+                  <div class="location_selected">
+                    <div class="flex">
+                      <p class="location_text">Selected Location:</p>
+                      <p id="js-selectedCityName" class="location_name">-</p>
                     </div>
+                    <button
+                      id="js-reselectCity"
+                      class="text-button location_change"
+                      type="button"
+                    >
+                      Change
+                    </button>
+                  </div>
+                  <div class="location_selecting">
+                    <div class="location_button_area">
+                      <button
+                        id="js-getLocation"
+                        class="button white"
+                        type="button"
+                      >
+                        Get My Location
+                      </button>
+                      <div class="tooltip_wrapper">
+                        <div class="icon-button">?</div>
+                        <div class="tooltip">
+                          <p>
+                            Click "Allow Location Access" to get your location
+                            or enter it manually.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="location_text">
+                      or
+                      <button id="js-openCitySelectModal" class="text-button">
+                        Select Manually
+                      </button>
+                    </p>
                   </div>
                 </div>
-                <p class="location-text">
-                  or
-                  <button id="js-openCitySelectModal" class="text-button">
-                    Select Manually
-                  </button>
-                </p>
                 <div class="onboarding_step-controller">
                   <button class="button primary js-nextSlide" type="button">
                     Next
@@ -136,7 +153,11 @@
                 <div class="slide_switch switch">
                   <span class="switch_text">Male</span>
                   <label class="switch_button">
-                    <input type="checkbox" class="switch_checkbox" />
+                    <input
+                      id="js-toggleGender"
+                      type="checkbox"
+                      class="switch_checkbox"
+                    />
                     <span class="switch_slider"></span>
                   </label>
                   <span class="switch_text">Female</span>
@@ -156,6 +177,15 @@
     <footer class="footer">
       <p>&copy;WeatherApp</p>
     </footer>
+    <div id="js-locationLoading" class="loading_modal">
+      <div class="content_inprogress">
+        <p>Loading location...</p>
+        <div class="loader"></div>
+      </div>
+      <div class="content_done">
+        <p>Success!!</p>
+      </div>
+    </div>
     <div id="js-citySelectModal" class="modal">
       <div class="modal_content">
         <div class="modal_header">
