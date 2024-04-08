@@ -38,16 +38,22 @@ function getToday() {
 }
 
 //Get Day of the week
-function getDayOfWeek() {
+function getDayOfWeek(offset) {
   const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const today = new Date();
-  const dayOfWeek = daysOfWeek[today.getDay()];
-  return dayOfWeek;
+  const dayOfWeek = today.getDay();
+  const days = [];
+  
+  for (let i = 0; i < 7; i++) {
+    days.push(daysOfWeek[(dayOfWeek + i) % 7]);
+  }
+  return days;
 }
+
 //天気の情報を取得する関数
 async function getWeather() {
   const URL =
-    "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&current=temperature_2m,weather_code&hourly=precipitation_probability,temperature_2m,weather_code&forecast_days=1";
+    "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&current=temperature_2m,weather_code&hourly=precipitation_probability,temperature_2m,weather_code&forecast_days=7&daily=weather_code,temperature_2m_max,precipitation_probability_max,precipitation_hours";
     try {
     const response = await fetch(URL);
     if (!response.ok) {
@@ -62,6 +68,15 @@ async function getWeather() {
   
 }
 
+//Display 7 days from the current day of the week
+document.addEventListener("DOMContentLoaded", () => {
+  const dayOfWeekDom = document.querySelectorAll(".js-sevendayForecast");
+  //Day of the week
+  dayOfWeekDom.forEach((element, index) => {
+    const days = getDayOfWeek(index);
+    element.innerHTML = days[index];
+  });
+});
 
 // 天気のアイコンを表示する
 const WeatherIconObj = {
@@ -97,67 +112,87 @@ const WeatherIconObj = {
 document.addEventListener("DOMContentLoaded", () => {
   (async () => {
     const WeatherInfo = await getWeather();
-    const weatherImageElement = document.getElementsByClassName("js-weatherImage")[0];
     const setWeatherImage = (weatherCode) => {
       return `../images/weatherIcon/${WeatherIconObj[weatherCode]}`;
     };
-    //Now のHourlyForecast
-    const todayWeather = WeatherInfo.current.weather_code;
-    const todayWeatherImage = setWeatherImage(todayWeather);
-
-    // 画像のパスを設定
-    weatherImageElement.src = todayWeatherImage;
-    // weatherImageElement.src = hourlyWeatherImage;
-    //TODO 後で消す
-    console.log("--現在の時刻--");
-    console.log(WeatherInfo.current.time);
     
-    // 現在の気温
+    // Set today's weather image
+    const todayWeather = WeatherInfo.current.weather_code;
+    const weatherImageElement = document.getElementsByClassName("js-weatherImage")[0];
+
+    weatherImageElement.src = setWeatherImage(todayWeather);;
+
+    // Set images for the next 7 days
+    const weatherCodes = WeatherInfo.daily.weather_code;
+    const sevendayWeatherImages = document.querySelectorAll(".js-sevendayWeatherImage");
+    
+    weatherCodes.forEach((weatherCode, index) => {
+      sevendayWeatherImages[index].src = setWeatherImage(weatherCode);
+    });
+
+    // Now -> Current Temperature
     const hourlyTemperature = WeatherInfo.current.temperature_2m;
     const hourlyTemperatureElement = document.getElementsByClassName("js-getHourlyTemperature")[0];
     hourlyTemperatureElement.textContent = `${hourlyTemperature}°C`;
 
-    //Now から１時間おきのデータを取得
-    const currentTime = new Date();
     
-    //WeatherCodeから画像取得
+    //Hourly Forecast
+    const currentTime = new Date();
+    const hourlyEachTemperature = WeatherInfo.hourly.temperature_2m;
     const hourlyWeatherCodes = WeatherInfo.hourly.weather_code;
-
+    const hourlyTemperatureData = []; 
     const hourlyWeatherCodesValues = [];
     const leftTimeValues = [];
-    const hourlyEachTemperature = WeatherInfo.hourly.temperature_2m;
-    const hourlyTemperatureData = []; 
+
     for (let i = 0; i < 4; i++) {
       const futureTime = new Date(currentTime.getTime() + i * 60 * 60 * 1000); // i時間後
       const hourIndex = Math.floor((futureTime.getHours() - currentTime.getHours()) / 1); // 現在の時刻からの経過時間に基づいてindexを計算
-      futureTime.setHours(futureTime.getHours() + 14); // // 取得した時刻に14時間を加算（12時間ではなく14時間。Nowは含まないため時差＋１時間追加）
+      //TODO 調整後実際は＋１時間  時差13時間を加算（Nowは含まないため時差＋１時間追加）
+      futureTime.setHours(futureTime.getHours() + 14); 
       const formattedTime = futureTime.toLocaleString('en-US', {hour: 'numeric', minute: '2-digit'});
       const timeValues = formattedTime.split(':');  // コロンで時刻を分割。"◯時"のみを取得。□分削除
       const leftTimeValue = timeValues[0];
       leftTimeValues.push(leftTimeValue);
+      //TODO 調整必要かも
       hourlyWeatherCodesValues.push(hourlyWeatherCodes[hourIndex+2]);
-
       const hourlyTemperatureValue = hourlyEachTemperature[hourIndex+2];
       hourlyTemperatureData.push(hourlyTemperatureValue);
     }
-    
-    //Hourly Forecast (Today)・画像の表示(Now以降)
+
+    //Hourly Forecast (Today)・Display Image(Now以降)
     const timeWeatherImageElements = document.querySelectorAll(".js-timeWeatherImage");
     hourlyWeatherCodesValues.forEach((weatherCode, index) => {
       timeWeatherImageElements[index].src = setWeatherImage(weatherCode);
     });
 
-    //Hourly Forecast (Today)・時間の表示(Now以降)
+    //Hourly Forecast (Today)・Display Time(Now以降)
     const hourlyTimeforcastElements = document.querySelectorAll(".js-hourlyTimeForecast");
     hourlyTimeforcastElements.forEach((hourlyTime, index) => {
       hourlyTime.textContent = `${leftTimeValues[index]}:00 `;
     }); 
 
-    // Hourly Forecast (Today)・気温の表示(Now以降)
+    // Hourly Forecast (Today)・Display Temperature(Now以降)
     const hourlyTempCelsiusElements = document.querySelectorAll(".js-hourlyTempCelsius");
     hourlyTempCelsiusElements.forEach((hourlyTemperature, index) => {
       hourlyTemperature.textContent = `${hourlyTemperatureData[index]}°C`;
     }); 
+
+    //temperature(Celsius)
+    const temperatureInfo = WeatherInfo.daily.temperature_2m_max;
+    const tempCelsiusElements = document.querySelectorAll(".js-sevendayCelsius");
+
+    temperatureInfo.forEach((temperature, index) => {
+      const roundedTemperature = temperature.toFixed(1); // 気温を小数点以下1桁に丸める
+      tempCelsiusElements[index].textContent = `${roundedTemperature}°C`;
+    });
+
+    //precipitation_probability_max
+    const precipitationProbability = WeatherInfo.daily.precipitation_probability_max
+    const sevendayPrecipitationElements = document.querySelectorAll(".js-sevendayPrecipitation");
+    
+    precipitationProbability.forEach((precipitation, index) => {
+      sevendayPrecipitationElements[index].textContent = `${precipitation} %`
+    });
 
   })();
 });
