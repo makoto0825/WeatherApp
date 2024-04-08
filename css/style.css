@@ -82,14 +82,24 @@ h6 {
     padding-top: 60px; 
 }
 
-.weather-item, .detailed-weather-item {
+.weather-item {
     flex: 1;
     text-align: center;
-    padding: 10px
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-item-img {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
 }
 
 .weather-item img{
-    max-width: 100%;
+    width: 64%;
     height: auto;
 }
 
