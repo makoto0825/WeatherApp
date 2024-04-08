@@ -72,6 +72,11 @@ h2 {
 .switch {
   color: white;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-left: 1em;
 }
 .switch_button {
   position: relative;
