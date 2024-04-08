@@ -1,3 +1,5 @@
+import { getWeatherImage } from "./weatherImage.js";
+
 //===================Function==============================================
 function updateClotheText(todayMaxTemp, gender) {
   const clothImageElement = document.getElementById("js-clothesImg");
@@ -10,12 +12,10 @@ function updateClotheText(todayMaxTemp, gender) {
     //適温の場合
     clothImageElement.src = `../images/clothes/warm_${gender}.png`;
     textElement.textContent = clothesDescriptions.warm; //テキストを表示する
-    console.log(clothesDescriptions.warm);
   } else if (todayMaxTemp >= 10) {
     //涼しい場合
     clothImageElement.src = `../images/clothes/cool_${gender}.png`;
     textElement.textContent = clothesDescriptions.cool; //テキストを表示する
-    console.log(clothesDescriptions.warm);
   } else {
     //寒い場合
     clothImageElement.src = `../images/clothes/cold_${gender}.png`;
@@ -61,65 +61,16 @@ async function getWeather() {
     console.error(error); //何かしらのエラーが発生した場合はエラーメッセージを表示する
   }
 }
-//APIで取得した気温をグローバル変数に設定する関数
-const updateTemp = (newTemp) => {
-  temperature = newTemp;
-};
 
 //===================Program start==============================================
 //性別の情報を取得する関数
 let gender = "M"; // 初期の性別を設定
-let temperature; // 気温
-
-// genderの切り替え
-document.addEventListener("DOMContentLoaded", () => {
-  const genderSwitch = document.getElementById("js-genderSwitch");
-  genderSwitch.addEventListener("change", () => {
-    if (genderSwitch.checked) {
-      gender = "F"; // 女性
-    } else {
-      gender = "M"; // 男性
-    }
-    updateClotheText(temperature, gender); //
-  });
-});
 
 //現在の日付を表示する
 document.addEventListener("DOMContentLoaded", () => {
   const todayDom = document.getElementById("js-getToday");
   todayDom.innerHTML = getToday();
 });
-
-//天気のアイコンのオブジェクト
-const WeatherIconObj = {
-  0: "Clear.png", //"Clear"
-  1: "Clear.png", //"Clear"
-  2: "Cloudy.png", //"Cloudy"
-  3: "Cloudy.png", //"Cloudy"
-  45: "fog.png", // "Fog"
-  48: "fog.png", // "Fog"
-  51: "cloudy-sometimes-rain.png", //"Drizzle"
-  53: "cloudy-sometimes-rain.png", //"Drizzle"
-  55: "cloudy-sometimes-rain.png", //"Drizzle"
-  56: "cloudy-sometimes-rain.png", //"Drizzle"
-  57: "cloudy-sometimes-rain.png", //"Drizzle"
-  61: "rain.png", // "Rain"
-  63: "rain.png", // "Rain"
-  65: "rain.png", // "Rain"
-  66: "rain.png", // "Rain"
-  67: "rain.png", // "Rain"
-  71: "snow.png", // "Snow"
-  73: "snow.png", // "Snow"
-  75: "snow.png", // "Snow"
-  80: "Rain showers", //"Rain showers"
-  81: "Rain showers", //"Rain showers"
-  82: "Rain showers", //"Rain showers"
-  85: "snow.png", //"Snow shower" TODO 後でアイコン変更
-  86: "snow.png", //"Snow shower" TODO 後でアイコン変更
-  95: "Thunderstorm.png", // "Thunderstorm"
-  96: "Thunderstorm.png", // "Thunderstorm"
-  99: "Thunderstorm.png", // "Thunderstorm"
-};
 
 // 温度別の服装の文章のオブジェクト
 const clothesDescriptions = {
@@ -134,13 +85,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const WeatherInfo = await getWeather();
     const todayWeather = WeatherInfo.daily.weather_code[0];
     const todayMaxTemp = WeatherInfo.daily.temperature_2m_max[0];
-    // 外部変数を更新する
-    updateTemp(todayMaxTemp);
+    const temperature = todayMaxTemp; // 気温
+
+    //性別の切り替え
+    const genderSwitch = document.getElementById("js-genderSwitch");
+    genderSwitch.addEventListener("change", () => {
+      if (genderSwitch.checked) {
+        gender = "F"; // 女性
+      } else {
+        gender = "M"; // 男性
+      }
+      updateClotheText(temperature, gender); //
+    });
 
     //天気のアイコン画像を表示する
-    const weatherImageName = WeatherIconObj[todayWeather];
     const weatherImageElement = document.getElementById("js-weatherImage");
-    weatherImageElement.src = `../images/weatherIcon/${weatherImageName}.png`;
+    weatherImageElement.src = getWeatherImage(todayWeather);
     updateClotheText(todayMaxTemp, gender); // 服の画像を更新
   })();
 });

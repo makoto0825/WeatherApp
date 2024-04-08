@@ -1,3 +1,9 @@
+.container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 h1 {
   /* text-align: center; */
   /* font-size: 32px; */
@@ -10,7 +16,7 @@ h1 {
 }
 .content {
   margin: 0 auto;
-  padding: 1%;
+  padding: 24px;
   background: linear-gradient(to bottom right, #dc63e5 0%, #5164f0 100%);
   /* width: clamp(18.75rem, 10.417rem + 41.67vw, 62.5rem); */
   width: clamp(18.75rem, 10.417rem + 41.67vw, 62.5rem);
@@ -34,13 +40,17 @@ h2 {
   color: black;
   width: 80%;
   font-size: clamp(0.938rem, 0.759rem + 0.89vw, 1.875rem);
+
+  @media screen and (max-width: 835px) {
+    width: 100%;
+  }
 }
 .fontMochiy-pop {
   font-family: "Mochiy Pop One", sans-serif;
   font-weight: 400;
 }
 .clothesImg {
-  width: 50%;
+  width: 80%;
 }
 .weatherImage {
   position: absolute;
@@ -51,11 +61,22 @@ h2 {
 .divClothesImg {
   position: relative;
 }
+.suggest-cloth{
+  display: flex;
+}
+.suggest-cloth-img{
+  margin: 5% auto
+}
 
 /* //スライドのCSS */
 .switch {
   color: white;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-left: 1em;
 }
 .switch_button {
   position: relative;
@@ -94,7 +115,7 @@ h2 {
   position: absolute;
   top: 6px;
   left: 6px;
-  background-color: #dc63e5;
+  background-color:  #5164f0;
   transition: all 0.4s cubic-bezier(0.87, 0, 0.13, 1);
 }
 @media screen and (max-width: 835px) {
@@ -107,12 +128,20 @@ h2 {
 }
 
 .switch_checkbox:checked + .switch_slider:before {
-  background-color: #5164f0;
+  background-color:#dc63e5;
   transform: translateX(40px);
 }
 @media screen and (max-width: 835px) {
   .switch_checkbox:checked + .switch_slider:before {
     transform: translateX(32px);
+  }
+}
+@media screen and (max-width: 480px) {
+  .suggest-cloth{
+    display: block;
+  }
+  .clothesImg{
+    width: 50%;
   }
 }
 
