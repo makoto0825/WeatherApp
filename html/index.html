@@ -77,14 +77,22 @@
     </header>
 
     <div id="hero-image">
-      <div class="hero-image-section"></div>
+      <div class="hero-image-content">
+        <img
+          class="js-weatherImage hero-image-section"
+          alt="Weather Icon"
+        />
+      </div>
       <div class="hero-section_contents">
         <h1 class="fontMochiy-pop">Toronto</h1>
         <div class="hero-section_cont_daily-information fontMochiy-pop">
-          <p>February 13</p>
-          <p>Tuesday</p>
-          <p><span>temperature(icon) 9°C / 48.2°F</span></p>
-          <p>Rainy Percent(icon) 60%</p>
+          <p class="js-getToday"></p>
+          <p class="js-getDayOfWeek"></p>
+          <div class="temperature-content">
+            <p>temperature&nbsp;</p>
+            <p class="js-getTodayTemperature"></p>
+          </div>
+          <p class="js-getTodayPrecipitation"></p>
         </div>
       </div>
     </div>
@@ -95,57 +103,59 @@
       </h2>
       <div class="weather-timeline">
         <div class="weather-item">
-          <p>Morning</p>
-          <p>25°C</p>
-          <p>77°F</p>
+          <p class="js-timeOfDay"></p>
+          <p class="js-tempCelsius"></p>
+          <p class="js-tempFahrenheit"></p>
           <p>
             <img
-              src="../images/top/snow.png"
-              alt="weather image"
+              class="js-timeWeatherImage"
+              alt="Weather Icon"
             />
           </p>
-          <p>--</p>
+          <p class="js-timePrecipitation"></p>
         </div>
         <div class="weather-item">
-          <p>Afternoon</p>
-          <p>37°</p>
-          <p>98.6°F</p>
+          <p class="js-timeOfDay"></p>
+          <p class="js-tempCelsius"></p>
+          <p class="js-tempFahrenheit"></p>
+
           <p>
             <img
-              src="../images/top/sunny.png"
-              alt="weather image"
+              class="js-timeWeatherImage"
+              alt="Weather Icon"
             />
           </p>
-          <p>--</p>
+          <p class="js-timePrecipitation"></p>
         </div>
         <div class="weather-item">
-          <p>Evening</p>
-          <p>18°</p>
-          <p>64.4°F</p>
+          <p class="js-timeOfDay"></p>
+          <p class="js-tempCelsius"></p>
+          <p class="js-tempFahrenheit"></p>
           <p>
             <img
-              src="../images/top/rain.png"
-              alt="weather image"
+              class="js-timeWeatherImage"
+              alt="Weather Icon"
             />
           </p>
-          <p>3%</p>
+          <p class="js-timePrecipitation"></p>
         </div>
         <div class="weather-item">
-          <p>Overnight</p>
-          <p>11°</p>
-          <p>51.8°F</p>
+          <p class="js-timeOfDay"></p>
+          <p class="js-tempCelsius"></p>
+          <p class="js-tempFahrenheit"></p>
           <p>
             <img
-              src="../images/top/cloudy.png"
-              alt="weather image"
+              class="js-timeWeatherImage"
+              alt="Weather Icon"
             />
           </p>
-          <p>7%</p>
+          <p class="js-timePrecipitation"></p>
         </div>
       </div>
     </div>
     <footer style="padding: 20px; text-align: center">
       <p>&copy;WeatherAPP</p>
     </footer>
+    <script src="../js/index.js"></script>
   </body>
 </html>
