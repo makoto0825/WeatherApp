@@ -1,3 +1,5 @@
+import { getWeatherImage } from "./weatherImage.js";
+
 //===================Function==============================================
 function updateClotheText(todayMaxTemp, gender) {
   const clothImageElement = document.getElementById("js-clothesImg");
@@ -70,37 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
   todayDom.innerHTML = getToday();
 });
 
-//天気のアイコンのオブジェクト
-const WeatherIconObj = {
-  0: "Clear.png", //"Clear"
-  1: "Clear.png", //"Clear"
-  2: "Cloudy.png", //"Cloudy"
-  3: "Cloudy.png", //"Cloudy"
-  45: "fog.png", // "Fog"
-  48: "fog.png", // "Fog"
-  51: "cloudy-sometimes-rain.png", //"Drizzle"
-  53: "cloudy-sometimes-rain.png", //"Drizzle"
-  55: "cloudy-sometimes-rain.png", //"Drizzle"
-  56: "cloudy-sometimes-rain.png", //"Drizzle"
-  57: "cloudy-sometimes-rain.png", //"Drizzle"
-  61: "rain.png", // "Rain"
-  63: "rain.png", // "Rain"
-  65: "rain.png", // "Rain"
-  66: "rain.png", // "Rain"
-  67: "rain.png", // "Rain"
-  71: "snow.png", // "Snow"
-  73: "snow.png", // "Snow"
-  75: "snow.png", // "Snow"
-  80: "Rain showers", //"Rain showers"
-  81: "Rain showers", //"Rain showers"
-  82: "Rain showers", //"Rain showers"
-  85: "snow.png", //"Snow shower" TODO 後でアイコン変更
-  86: "snow.png", //"Snow shower" TODO 後でアイコン変更
-  95: "Thunderstorm.png", // "Thunderstorm"
-  96: "Thunderstorm.png", // "Thunderstorm"
-  99: "Thunderstorm.png", // "Thunderstorm"
-};
-
 // 温度別の服装の文章のオブジェクト
 const clothesDescriptions = {
   hot: "Today's temperature is expected to make you sweat during the day. Therefore, we recommend light and breathable clothing. Items such as moisture-wicking short-sleeve T-shirts, sleeveless dresses, and cool-feeling cotton shorts are recommended.",
@@ -128,9 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     //天気のアイコン画像を表示する
-    const weatherImageName = WeatherIconObj[todayWeather];
     const weatherImageElement = document.getElementById("js-weatherImage");
-    weatherImageElement.src = `../images/weatherIcon/${weatherImageName}.png`;
+    weatherImageElement.src = getWeatherImage(todayWeather);
     updateClotheText(todayMaxTemp, gender); // 服の画像を更新
   })();
 });
