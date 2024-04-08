@@ -1,3 +1,9 @@
+.container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 h1 {
   /* text-align: center; */
   /* font-size: 32px; */
@@ -40,7 +46,7 @@ h2 {
   font-weight: 400;
 }
 .clothesImg {
-  width: 50%;
+  width: 80%;
 }
 .weatherImage {
   position: absolute;
@@ -50,6 +56,12 @@ h2 {
 }
 .divClothesImg {
   position: relative;
+}
+.suggest-cloth{
+  display: flex;
+}
+.suggest-cloth-img{
+  margin: 5% auto
 }
 
 /* //スライドのCSS */
@@ -94,7 +106,7 @@ h2 {
   position: absolute;
   top: 6px;
   left: 6px;
-  background-color: #dc63e5;
+  background-color:  #5164f0;
   transition: all 0.4s cubic-bezier(0.87, 0, 0.13, 1);
 }
 @media screen and (max-width: 835px) {
@@ -107,12 +119,20 @@ h2 {
 }
 
 .switch_checkbox:checked + .switch_slider:before {
-  background-color: #5164f0;
+  background-color:#dc63e5;
   transform: translateX(40px);
 }
 @media screen and (max-width: 835px) {
   .switch_checkbox:checked + .switch_slider:before {
     transform: translateX(32px);
+  }
+}
+@media screen and (max-width: 480px) {
+  .suggest-cloth{
+    display: block;
+  }
+  .clothesImg{
+    width: 50%;
   }
 }
 

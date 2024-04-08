@@ -10,12 +10,10 @@ function updateClotheText(todayMaxTemp, gender) {
     //適温の場合
     clothImageElement.src = `../images/clothes/warm_${gender}.png`;
     textElement.textContent = clothesDescriptions.warm; //テキストを表示する
-    console.log(clothesDescriptions.warm);
   } else if (todayMaxTemp >= 10) {
     //涼しい場合
     clothImageElement.src = `../images/clothes/cool_${gender}.png`;
     textElement.textContent = clothesDescriptions.cool; //テキストを表示する
-    console.log(clothesDescriptions.warm);
   } else {
     //寒い場合
     clothImageElement.src = `../images/clothes/cold_${gender}.png`;
@@ -69,10 +67,11 @@ const updateTemp = (newTemp) => {
 //===================Program start==============================================
 //性別の情報を取得する関数
 let gender = "M"; // 初期の性別を設定
-let temperature; // 気温
+
 
 // genderの切り替え
 document.addEventListener("DOMContentLoaded", () => {
+  let temperature; // 気温
   const genderSwitch = document.getElementById("js-genderSwitch");
   genderSwitch.addEventListener("change", () => {
     if (genderSwitch.checked) {
@@ -82,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     updateClotheText(temperature, gender); //
   });
+  console.log(updateClotheText(temperature, gender));
 });
 
 //現在の日付を表示する
