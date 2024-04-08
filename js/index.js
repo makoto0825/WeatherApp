@@ -1,3 +1,5 @@
+import { ICON_WEATHER_CODE_MAP } from "./iconWeatherCodeMap.js";
+
 //今日の日付を取得する関数:フォーマット例「January 1」
 function getToday() {
     const today = new Date();
@@ -56,47 +58,18 @@ function getToday() {
     dayOfWeekDom.innerHTML = getDayOfWeek();
   });
 
-  // 天気のアイコンを表示する
-  const WeatherIconObj = {
-    0: "Clear.png",  //"Clear"
-    1: "Clear.png",  //"Clear"
-    2: "Cloudy.png", //"Cloudy"
-    3: "Cloudy.png", //"Cloudy"
-    45: "fog.png",  // "Fog"
-    48: "fog.png",  // "Fog"
-    51: "cloudy-sometimes-rain.png",  //TODO 後でアイコン変更 "Drizzle" 
-    53: "cloudy-sometimes-rain.png",  //"Drizzle" TODO 後でアイコン変更
-    55: "cloudy-sometimes-rain.png",  //"Drizzle" TODO 後でアイコン変更
-    56: "cloudy-sometimes-rain.png",  //"Drizzle" TODO 後でアイコン変更
-    57: "cloudy-sometimes-rain.png",  //"Drizzle" TODO 後でアイコン変更
-    61: "rain.png",  // "Rain"
-    63: "rain.png",  // "Rain"
-    65: "rain.png",  // "Rain"
-    66: "rain.png",  // "Rain"
-    67: "rain.png",  // "Rain"
-    71: "snow.png",  // "Snow"
-    73: "snow.png",  // "Snow"
-    75: "snow.png",  // "Snow"
-    80: "rain.png",  //"Rain showers"
-    81: "rain.png",  //"Rain showers"
-    82: "rain.png",  //"Rain showers"
-    85: "snow.png",  //"Snow shower" TODO 後でアイコン変更
-    86: "snow.png",  //"Snow shower" TODO 後でアイコン変更
-    95: "Thunderstorm.png", // "Thunderstorm"
-    96: "Thunderstorm.png", // "Thunderstorm"
-    99: "Thunderstorm.png", // "Thunderstorm"
+  const getWeatherImage = (weatherCode) => {
+    return `../images/weatherIcon/${ICON_WEATHER_CODE_MAP[weatherCode]}.svg`;
   };
+
   document.addEventListener("DOMContentLoaded", () => {
     (async () => {
       const WeatherInfo = await getWeather();
       const weatherImageElement = document.getElementsByClassName("js-weatherImage")[0];
-      const setWeatherImage = (weatherCode) => {
-        return `../images/weatherIcon/${WeatherIconObj[weatherCode]}`;
-      };
-      const todayWeather = WeatherInfo.daily.weather_code[0];
-      const todayWeatherImage = setWeatherImage(todayWeather);
+      
+      const todayWeatherCode = WeatherInfo.daily.weather_code[0];
       // 画像のパスを設定
-      weatherImageElement.src = todayWeatherImage;
+      weatherImageElement.src = getWeatherImage(todayWeatherCode);
       
       //Today's precipitation probability
       const todayPrecipitationElement = document.getElementsByClassName("js-getTodayPrecipitation")[0];
@@ -143,7 +116,7 @@ function getToday() {
       })
 
       hourlyWeatherCodesValues.forEach((weatherCode, index) => {
-        timeWeatherImageElements[index].src = setWeatherImage(weatherCode);;
+        timeWeatherImageElements[index].src = getWeatherImage(weatherCode);;
       });
 
       hourlyPrecipitationValues.forEach((precipitation, index) => {
