@@ -1,5 +1,5 @@
+import { LOCAL_STORAGE_KEYS } from "./common/constants.js";
 import { getWeatherImage } from "./weatherImage.js";
-
 //======================================================function================================================
 function formatDate(dateString) {
   // 日付文字列を分割して年、月、日に分ける
@@ -35,10 +35,9 @@ function getDayOfWeek(week) {
 }
 
 //天気の情報を取得する関数
-async function getWeather(lat, long) {
-  // const URL = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&current=temperature_2m,weather_code&hourly=precipitation_probability,temperature_2m,weather_code&forecast_days=7&daily=weather_code,temperature_2m_max,precipitation_probability_max,precipitation_hours`;
-  const URL =
-    "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&current=temperature_2m,weather_code&hourly=precipitation_probability,temperature_2m,weather_code&forecast_days=7&daily=weather_code,temperature_2m_max,precipitation_probability_max,precipitation_hours&timezone=Asia%2FTokyo";
+async function getWeather(lat, long, timeZone) {
+  const URL = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&current=temperature_2m,weather_code&hourly=precipitation_probability,temperature_2m,weather_code&forecast_days=7&daily=weather_code,temperature_2m_max,precipitation_probability_max,precipitation_hours&timezone=${timeZone}`;
+
   try {
     const response = await fetch(URL);
     if (!response.ok) {
@@ -84,10 +83,14 @@ function generateWeatherData(wholeHourlyData) {
 // 画面が読み込まれたら実行
 document.addEventListener("DOMContentLoaded", () => {
   (async () => {
+    //localStorageから緯度、経度、タイムゾーンを取得する
+    const lat = localStorage.getItem(LOCAL_STORAGE_KEYS.lat);
+    const long = localStorage.getItem(LOCAL_STORAGE_KEYS.long);
+    let timeZone = localStorage.getItem(LOCAL_STORAGE_KEYS.timezone);
+    timeZone = timeZone.replace("/", "%2F");
+
     //APIから天気情報を取得する
-    const lat = localStorage.getItem("latitude");
-    const long = localStorage.getItem("longitude");
-    const WeatherInfo = await getWeather(lat, long);
+    const WeatherInfo = await getWeather(lat, long, timeZone);
 
     //HTMLの要素を取得する
     const hourlyTimeforcastElements = document.querySelectorAll(
@@ -112,6 +115,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const tempCelsiusElements = document.querySelectorAll(
       ".js-sevendayCelsius"
     );
+    const showH2Element = document.getElementById("js-showH2");
+
     const weatherImageElement =
       document.getElementsByClassName("js-weatherImage")[0];
 
@@ -134,6 +139,8 @@ document.addEventListener("DOMContentLoaded", () => {
         hourlyItems.forEach((item) => {
           item.innerHTML = "";
         });
+        //H2の内容を変更
+        showH2Element.textContent = `Forecast 　${days[index]}`;
         //スクロール
         window.scrollTo({
           top: 0,

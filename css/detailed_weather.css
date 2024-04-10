@@ -1,7 +1,7 @@
 .fontMochiy-pop {
-    font-family: "Mochiy Pop One", sans-serif;
-    font-weight: 400;
-  }
+  font-family: "Mochiy Pop One", sans-serif;
+  font-weight: 400;
+}
 
 h1,
 h2,
@@ -13,117 +13,118 @@ h6 {
 }
 
 .detailed-weather-timeline {
-    display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
-    justify-content: space-around;
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: space-around;
 }
 
 .detailed-weather-widget {
-    padding-top: 60px; 
+  padding-top: 60px;
 }
 
 .detailed-weather-item {
-    flex: 1;
-    text-align: center;
-    padding: 10px
+  flex: 1;
+  text-align: center;
+  padding: 10px;
 }
 
-.container{
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.detailed-hourly-forcast{
-    padding-bottom: 40px;
-    margin-bottom: 40px;
-    margin-left: 30px;
-    margin-right: 30px;
-
+.detailed-hourly-forcast {
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
-.detailed-hourly-forcast h2{
-    margin-top: 50px;
-    margin-bottom: 30px;
+.detailed-hourly-forcast h2 {
+  margin-top: 50px;
+  margin-bottom: 30px;
 }
 
-.detailed-daily-forcast{
-    margin-left: 30px;
-    margin-right: 30px;
+.detailed-daily-forcast {
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
-.detailed-daily-forcast h2{
-    margin-bottom: 20px;
+.detailed-daily-forcast h2 {
+  margin-bottom: 20px;
+}
+.detailed-weather-item p {
+  height: 30px;
 }
 
-.detailed-weather-item img{
-    max-width: 100%;
+.detailed-weather-item img {
+  max-width: 100%;
 }
 
-.detailed-weather-daily-forcast-content{
-    cursor: pointer;
+.detailed-weather-daily-forcast-content {
+  cursor: pointer;
 }
 
-.detailed-weather-daily-forcast-content img{
-    max-width: 100%;
-    height: auto;
+.detailed-weather-daily-forcast-content img {
+  max-width: 100%;
+  height: auto;
 }
 
 .detailed-weather-daily-forcast-content table {
-    border-collapse: collapse;
-    width: 100%;
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.detailed-weather-daily-forcast-content tr{
-    border-top: 1px dotted black;
-    height: 75px;
+.detailed-weather-daily-forcast-content tr {
+  border-top: 1px dotted black;
+  height: 75px;
 }
 
-.detailed-weather-daily-forcast-content td:nth-child(3){
-    width: 50px;
-    height: 50px;
+.detailed-weather-daily-forcast-content td:nth-child(3) {
+  width: 50px;
+  height: 50px;
 }
 
-.detailed-weather-daily-forcast-content td:nth-child(4){
-    text-align: center;
+.detailed-weather-daily-forcast-content td:nth-child(4) {
+  text-align: center;
 }
-
 
 @media screen and (max-width: 600px) {
-    .detailed-hourly-forcast, .detailed-daily-forcast{
-      margin-left: 20px;
-      margin-right: 20px;
-    }
+  .detailed-hourly-forcast,
+  .detailed-daily-forcast {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 }
 
 @media screen and (max-width: 480px) {
-    .weather-widget h2{
-        font-size: 18px;
-        margin-bottom: 15px;
-        
-    }
+  .weather-widget h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
 
-    .detailed-hourly-forcast h2,
-    .detailed-daily-forcast h2{
-        font-size: 1.2em;
-    }
+  .detailed-hourly-forcast h2,
+  .detailed-daily-forcast h2 {
+    font-size: 1.2em;
+  }
 
-    .detailed-weather-item {
-        text-align: center;
-        padding: 8px;
-        font-size: 0.8em;
-    }
+  .detailed-weather-item {
+    text-align: center;
+    padding: 8px;
+    font-size: 0.8em;
+  }
 
-    .detailed-weather-daily-forcast-content table{
-        font-size: 0.8em;
-    }
+  .detailed-weather-daily-forcast-content table {
+    font-size: 0.8em;
+  }
 
-    .detailed-weather-item img {
-        max-width: 80%;
-    }
+  .detailed-weather-item img {
+    max-width: 80%;
+  }
 
-    .detailed-weather-daily-forcast-content img {
-        width: 70%;
-    }
+  .detailed-weather-daily-forcast-content img {
+    width: 70%;
+  }
 }
