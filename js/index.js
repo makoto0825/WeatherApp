@@ -1,3 +1,5 @@
+import { getWeatherImage } from "./weatherImage.js";
+
 //今日の日付を取得する関数:フォーマット例「January 1」
 function getToday() {
     const today = new Date();
@@ -56,64 +58,26 @@ function getToday() {
     dayOfWeekDom.innerHTML = getDayOfWeek();
   });
 
-  // 天気のアイコンを表示する
-  const WeatherIconObj = {
-    0: "Clear.png",  //"Clear"
-    1: "Clear.png",  //"Clear"
-    2: "Cloudy.png", //"Cloudy"
-    3: "Cloudy.png", //"Cloudy"
-    45: "fog.png",  // "Fog"
-    48: "fog.png",  // "Fog"
-    51: "cloudy-sometimes-rain.png",  //TODO 後でアイコン変更 "Drizzle" 
-    53: "cloudy-sometimes-rain.png",  //"Drizzle" TODO 後でアイコン変更
-    55: "cloudy-sometimes-rain.png",  //"Drizzle" TODO 後でアイコン変更
-    56: "cloudy-sometimes-rain.png",  //"Drizzle" TODO 後でアイコン変更
-    57: "cloudy-sometimes-rain.png",  //"Drizzle" TODO 後でアイコン変更
-    61: "rain.png",  // "Rain"
-    63: "rain.png",  // "Rain"
-    65: "rain.png",  // "Rain"
-    66: "rain.png",  // "Rain"
-    67: "rain.png",  // "Rain"
-    71: "snow.png",  // "Snow"
-    73: "snow.png",  // "Snow"
-    75: "snow.png",  // "Snow"
-    80: "rain.png",  //"Rain showers"
-    81: "rain.png",  //"Rain showers"
-    82: "rain.png",  //"Rain showers"
-    85: "snow.png",  //"Snow shower" TODO 後でアイコン変更
-    86: "snow.png",  //"Snow shower" TODO 後でアイコン変更
-    95: "Thunderstorm.png", // "Thunderstorm"
-    96: "Thunderstorm.png", // "Thunderstorm"
-    99: "Thunderstorm.png", // "Thunderstorm"
-  };
   document.addEventListener("DOMContentLoaded", () => {
     (async () => {
       const WeatherInfo = await getWeather();
       const weatherImageElement = document.getElementsByClassName("js-weatherImage")[0];
-      const setWeatherImage = (weatherCode) => {
-        return `../images/weatherIcon/${WeatherIconObj[weatherCode]}`;
-      };
-      const todayWeather = WeatherInfo.daily.weather_code[0];
-      const hourlyWeather = WeatherInfo.hourly.weather_code[0];
-      const todayWeatherImage = setWeatherImage(todayWeather);
-      const hourlyWeatherImage = setWeatherImage(hourlyWeather);
+      
+      const todayWeatherCode = WeatherInfo.daily.weather_code[0];
       // 画像のパスを設定
-      weatherImageElement.src = todayWeatherImage;
-      weatherImageElement.src = hourlyWeatherImage;
+      weatherImageElement.src = getWeatherImage(todayWeatherCode);
       
       //Today's precipitation probability
       const todayPrecipitationElement = document.getElementsByClassName("js-getTodayPrecipitation")[0];
       const todayPrecipitation = WeatherInfo.daily.precipitation_probability_max[0];
-      todayPrecipitationElement.textContent = `Rainy Percent  ${todayPrecipitation}%`;
+      todayPrecipitationElement.innerHTML = `Rainy Percent&nbsp;  ${todayPrecipitation}%`;
       
       // Today's high and low temperatures
       const todayTemperatureElement = document.getElementsByClassName("js-getTodayTemperature")[0];
       const todayTempMax = WeatherInfo.daily.temperature_2m_max[0];
       const todayTempMin = WeatherInfo.daily.temperature_2m_min[0];
-      //TODO改行されない。一旦華氏のみ表示
-      const temperatureText = `temperature  ${todayTempMax}°C/ ${todayTempMin}°C`;
-      // const temperatureText = `temperature(icon) ${todayTempMax}°C / ${todayTempMin}°C\n ${((todayTempMax * 9/5) + 32).toFixed(1)}°F / ${((todayTempMin * 9/5) + 32).toFixed(1)}°F`;
-      todayTemperatureElement.textContent = temperatureText;
+      const temperatureText = `${todayTempMax}°C / ${todayTempMin}°C<br> ${((todayTempMax * 9/5) + 32).toFixed(1)}°F / ${((todayTempMin * 9/5) + 32).toFixed(1)}°F`;
+      todayTemperatureElement.innerHTML = temperatureText;
       
       //Get value of Morning 6AM, Afternoon 12PM, Evening 18PM, Overnight 24PM
       const hourlyTemperatures = WeatherInfo.hourly.temperature_2m;
@@ -148,7 +112,7 @@ function getToday() {
       })
 
       hourlyWeatherCodesValues.forEach((weatherCode, index) => {
-        timeWeatherImageElements[index].src = setWeatherImage(weatherCode);;
+        timeWeatherImageElements[index].src = getWeatherImage(weatherCode);;
       });
 
       hourlyPrecipitationValues.forEach((precipitation, index) => {
