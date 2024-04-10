@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200..900&family=Mochiy+Pop+One"
+    />
+    <link
+      rel="stylesheet"
+      href="../css/main.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../css/current.css"
+    />
+    <title>Home</title>
+  </head>
+  <body>
+    <header class="header">
+      <input
+        type="checkbox"
+        class="sp_nav_trigger"
+        id="sp_nav_trigger"
+      />
+      <label for="sp_nav_trigger">
+        <span></span>
+      </label>
+      <nav class="navbar">
+        <a
+          class="navbar_home"
+          href="./current.html"
+          >WeatherApp</a
+        >
+        <ul class="navbar_menu">
+          <li class="navbar_item">
+            <a
+              href="./about.html"
+              class="navbar_link"
+              >About</a
+            >
+          </li>
+          <li class="navbar_item">
+            <a
+              href="./detailed_weather.html"
+              class="navbar_link"
+              >Weather</a
+            >
+          </li>
+          <li class="navbar_item">
+            <a
+              href="./clothes.html"
+              class="navbar_link"
+              >Clothes</a
+            >
+          </li>
+          <li class="navbar_item">
+            <a
+              href="./settings.html"
+              class="navbar_link"
+              >Settings</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div id="hero-image">
+      <div class="hero-image-content">
+        <img
+          class="js-weatherImage hero-image-section"
+          alt="Weather Icon"
+        />
+      </div>
+      <div class="hero-section_contents">
+        <h1 id="js-cityName" class="fontMochiy-pop"></h1>
+        <div class="hero-section_cont_daily-information fontMochiy-pop">
+          <p class="js-getToday"></p>
+          <p class="js-getDayOfWeek"></p>
+          <div class="temperature-content">
+            <p>temperature&nbsp;</p>
+            <p class="js-getTodayTemperature"></p>
+          </div>
+          <p class="js-getTodayPrecipitation"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="weather-widget">
+      <h2 id="js-forecastHeader" class="fontMochiy-pop">
+        Today's forecast Etobicoke, Toronto, Canada
+      </h2>
+      <div class="weather-timeline">
+        <div class="weather-item">
+          <p class="js-timeOfDay"></p>
+          <p class="js-tempCelsius"></p>
+          <p class="js-tempFahrenheit"></p>
+          <p class="weather-item-img">
+            <img
+              class="js-timeWeatherImage"
+              alt="Weather Icon"
+            />
+          </p>
+          <p class="js-timePrecipitation"></p>
+        </div>
+        <div class="weather-item">
+          <p class="js-timeOfDay"></p>
+          <p class="js-tempCelsius"></p>
+          <p class="js-tempFahrenheit"></p>
+          <p class="weather-item-img">
+            <img
+              class="js-timeWeatherImage"
+              alt="Weather Icon"
+            />
+          </p>
+          <p class="js-timePrecipitation"></p>
+        </div>
+        <div class="weather-item">
+          <p class="js-timeOfDay"></p>
+          <p class="js-tempCelsius"></p>
+          <p class="js-tempFahrenheit"></p>
+          <p class="weather-item-img">
+            <img
+              class="js-timeWeatherImage"
+              alt="Weather Icon"
+            />
+          </p>
+          <p class="js-timePrecipitation"></p>
+        </div>
+        <div class="weather-item">
+          <p class="js-timeOfDay"></p>
+          <p class="js-tempCelsius"></p>
+          <p class="js-tempFahrenheit"></p>
+          <p class="weather-item-img">
+            <img
+              class="js-timeWeatherImage"
+              alt="Weather Icon"
+            />
+          </p>
+          <p class="js-timePrecipitation"></p>
+        </div>
+      </div>
+    </div>
+    <footer style="padding: 20px; text-align: center">
+      <p>&copy;WeatherAPP</p>
+    </footer>
+    <script type="module" src="../js/current.js"></script>
+  </body>
+</html>
