@@ -1,3 +1,5 @@
+import { LOCAL_STORAGE_KEYS } from "./common/constants.js";
+
 // ===========================
 // Switching Sliders
 // ===========================
@@ -46,14 +48,6 @@ const removeEventListeners = () => {
   window.removeEventListener("unload", removeEventListeners);
 };
 window.addEventListener("unload", removeEventListeners);
-
-const LOCAL_STORAGE_KEYS = {
-  lat: "latitude",
-  long: "longitude",
-  city: "city",
-  timezone: "timezone",
-  gender: "gender",
-};
 
 // ==================================
 // Select Gender
