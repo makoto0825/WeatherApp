@@ -1,4 +1,5 @@
 import { getWeatherImage } from "./weatherImage.js";
+import { LOCAL_STORAGE_KEYS } from "./common/constants.js";
 
 //今日の日付を取得する関数:フォーマット例「January 1」
 function getToday() {
@@ -34,8 +35,12 @@ function getToday() {
 
   //天気の情報を取得する関数
   async function getWeather() {
+    const latitude = localStorage.getItem(LOCAL_STORAGE_KEYS.lat);
+    const longitude = localStorage.getItem(LOCAL_STORAGE_KEYS.long);
+    const timezone = localStorage.getItem(LOCAL_STORAGE_KEYS.timezone);
+
     const URL =
-      "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&hourly=precipitation_probability,temperature_2m,weather_code&forecast_days=1";
+      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&hourly=precipitation_probability,temperature_2m,weather_code&forecast_days=1&timezone=${encodeURIComponent(timezone)}`;
       try {
       const response = await fetch(URL);
       if (!response.ok) {
