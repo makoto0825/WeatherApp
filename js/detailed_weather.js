@@ -1,28 +1,5 @@
-//Scroll to the top of the page when a specific day of the week element is clicked
+import { getWeatherImage } from "./weatherImage.js";
 
-//今日の日付を取得する関数:フォーマット例「January 1」
-// function getToday() {
-//   const today = new Date();
-//   const month = today.getMonth() + 1;
-//   const date = today.getDate();
-//   const monthName = [
-//     "January",
-//     "February",
-//     "March",
-//     "April",
-//     "May",
-//     "June",
-//     "July",
-//     "August",
-//     "September",
-//     "October",
-//     "November",
-//     "December",
-//   ];
-//   const monthStr = monthName[month - 1];
-//   const todayDate = `${month} ${date}`;
-//   return todayDate;
-// }
 //======================================================function================================================
 function formatDate(dateString) {
   // 日付文字列を分割して年、月、日に分ける
@@ -61,7 +38,7 @@ function getDayOfWeek(week) {
 async function getWeather(lat, long) {
   // const URL = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&current=temperature_2m,weather_code&hourly=precipitation_probability,temperature_2m,weather_code&forecast_days=7&daily=weather_code,temperature_2m_max,precipitation_probability_max,precipitation_hours`;
   const URL =
-    "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&current=temperature_2m,weather_code&hourly=precipitation_probability,temperature_2m,weather_code&forecast_days=7&daily=weather_code,temperature_2m_max,precipitation_probability_max,precipitation_hours&timezone=America%2FNew_York";
+    "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&current=temperature_2m,weather_code&hourly=precipitation_probability,temperature_2m,weather_code&forecast_days=7&daily=weather_code,temperature_2m_max,precipitation_probability_max,precipitation_hours&timezone=Asia%2FTokyo";
   try {
     const response = await fetch(URL);
     if (!response.ok) {
@@ -102,42 +79,7 @@ function generateWeatherData(wholeHourlyData) {
   return weatherData;
 }
 
-// 天気コードからアイコンのパスを取得する関数
-const setWeatherImage = (weatherCode) => {
-  return `../images/weatherIcon/${WeatherIconObj[weatherCode]}`;
-};
-
 //======================================================program start================================================
-// 天気のアイコンを表示するオブジェクト
-const WeatherIconObj = {
-  0: "Clear.png", //"Clear"
-  1: "Clear.png", //"Clear"
-  2: "Cloudy.png", //"Cloudy"
-  3: "Cloudy.png", //"Cloudy"
-  45: "fog.png", // "Fog"
-  48: "fog.png", // "Fog"
-  51: "cloudy-sometimes-rain.png", //TODO 後でアイコン変更 "Drizzle"
-  53: "cloudy-sometimes-rain.png", //"Drizzle" TODO 後でアイコン変更
-  55: "cloudy-sometimes-rain.png", //"Drizzle" TODO 後でアイコン変更
-  56: "cloudy-sometimes-rain.png", //"Drizzle" TODO 後でアイコン変更
-  57: "cloudy-sometimes-rain.png", //"Drizzle" TODO 後でアイコン変更
-  61: "rain.png", // "Rain"
-  63: "rain.png", // "Rain"
-  65: "rain.png", // "Rain"
-  66: "rain.png", // "Rain"
-  67: "rain.png", // "Rain"
-  71: "snow.png", // "Snow"
-  73: "snow.png", // "Snow"
-  75: "snow.png", // "Snow"
-  80: "rain.png", //"Rain showers"
-  81: "rain.png", //"Rain showers"
-  82: "rain.png", //"Rain showers"
-  85: "snow.png", //"Snow shower" TODO 後でアイコン変更
-  86: "snow.png", //"Snow shower" TODO 後でアイコン変更
-  95: "Thunderstorm.png", // "Thunderstorm"
-  96: "Thunderstorm.png", // "Thunderstorm"
-  99: "Thunderstorm.png", // "Thunderstorm"
-};
 
 // 画面が読み込まれたら実行
 document.addEventListener("DOMContentLoaded", () => {
@@ -199,9 +141,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         //天気のアイコンを表示する
         const dayInfo = listDayInfo[index];
-        for (i = 0; i < 6; i++) {
+        for (let i = 0; i < 6; i++) {
           //append chil
-          hourlyItems[i].innerHTML = `<p><img src="${setWeatherImage(
+          hourlyItems[i].innerHTML = `<p><img src="${getWeatherImage(
             dayInfo.weatherCode[i]
           )}" /></p><p>${dayInfo.temperature[i]}°C</p><p>${
             dayInfo.eachTime[i]
@@ -212,12 +154,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Set today's weather image
     const todayWeather = WeatherInfo.current.weather_code;
-    weatherImageElement.src = setWeatherImage(todayWeather);
+    weatherImageElement.src = getWeatherImage(todayWeather);
 
     // Set images for the next 7 days
     const weatherCodes = WeatherInfo.daily.weather_code;
     weatherCodes.forEach((weatherCode, index) => {
-      sevendayWeatherImages[index].src = setWeatherImage(weatherCode);
+      sevendayWeatherImages[index].src = getWeatherImage(weatherCode);
     });
 
     // Now -> Current Temperature
@@ -226,6 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //Hourly Forecast
     const currentTime = new Date();
+    const NextTime = currentTime.getHours() + 1;
     const hourlyEachTemperature = WeatherInfo.hourly.temperature_2m;
     const hourlyWeatherCodes = WeatherInfo.hourly.weather_code;
     const hourlyTemperatureData = [];
@@ -233,27 +176,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const leftTimeValues = [];
 
     for (let i = 0; i < 5; i++) {
-      const futureTime = new Date(currentTime.getTime() + i * 60 * 60 * 1000); // i時間後
-      const hourIndex = Math.floor(
-        (futureTime.getHours() - currentTime.getHours()) / 1
-      ); // 現在の時刻からの経過時間に基づいてindexを計算
-      //TODO 調整後実際は＋１時間  時差13時間を加算（Nowは含まないため時差＋１時間追加）
-      futureTime.setHours(futureTime.getHours() + 14);
-      const formattedTime = futureTime.toLocaleString("en-US", {
-        hour: "numeric",
-        minute: "2-digit",
-      });
-      const timeValues = formattedTime.split(":"); // コロンで時刻を分割。"◯時"のみを取得。□分削除
-      const leftTimeValue = timeValues[0];
-      leftTimeValues.push(leftTimeValue);
-      //TODO 調整必要かも
-      hourlyWeatherCodesValues.push(hourlyWeatherCodes[hourIndex + 2]);
-      const hourlyTemperatureValue = hourlyEachTemperature[hourIndex + 2];
+      leftTimeValues.push(NextTime + i);
+      // //TODO 調整必要かも
+      hourlyWeatherCodesValues.push(hourlyWeatherCodes[NextTime + i]);
+      const hourlyTemperatureValue = hourlyEachTemperature[NextTime + i];
       hourlyTemperatureData.push(hourlyTemperatureValue);
     }
 
     hourlyWeatherCodesValues.forEach((weatherCode, index) => {
-      timeWeatherImageElements[index].src = setWeatherImage(weatherCode);
+      timeWeatherImageElements[index].src = getWeatherImage(weatherCode);
     });
 
     //Hourly Forecast (Today)・Display Time(Now以降)
