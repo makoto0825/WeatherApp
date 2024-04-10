@@ -25,7 +25,6 @@
 // }
 //======================================================function================================================
 function formatDate(dateString) {
-  console.log(dateString);
   // 日付文字列を分割して年、月、日に分ける
   const [year, month, day] = dateString.split("-");
 
