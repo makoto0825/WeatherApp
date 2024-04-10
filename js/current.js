@@ -126,3 +126,14 @@ function getToday() {
 
     })();
   });
+
+  // Dynamically show the current city name
+  document.addEventListener("DOMContentLoaded", () => {
+    const cityElement = document.getElementById("js-cityName");
+    const cityProvinceCountry = localStorage.getItem(LOCAL_STORAGE_KEYS.city);
+    const city = cityProvinceCountry.split(",")[0];
+    cityElement.textContent = city;
+
+    const forecastHeaderElement = document.getElementById("js-forecastHeader");
+    forecastHeaderElement.textContent = `Today's Weather in ${cityProvinceCountry}`;
+  });
