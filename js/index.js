@@ -125,3 +125,61 @@ document.addEventListener("DOMContentLoaded", function () {
     setLocationMenuStatus(false);
   });
 });
+
+
+//Go to current.html page
+document.addEventListener("DOMContentLoaded", function () {
+  const goToCurrentButton = document.getElementById("js-goToCurrent");
+  goToCurrentButton.addEventListener("click", () => {
+    const missingSetting = checkForMissingSetting();
+    console.log(missingSetting)
+    if(!missingSetting) {
+      window.location.href = "current.html";
+    } else {
+      alert("Setting is missing: " + missingSetting);
+    }
+  });
+
+  //Go to current page if the user has already configured settings
+  setTimeout(() => {
+    const missingSetting = checkForMissingSetting();
+    if(!missingSetting) {
+      window.location.href = "current.html";
+    }
+  }, 2400)
+});
+
+function checkForMissingSetting(){
+  const location = localStorage.getItem(LOCAL_STORAGE_KEYS.city);
+  const lat = localStorage.getItem(LOCAL_STORAGE_KEYS.lat);
+  const long = localStorage.getItem(LOCAL_STORAGE_KEYS.long);
+  const timezone = localStorage.getItem(LOCAL_STORAGE_KEYS.timezone);
+  const gender = localStorage.getItem(LOCAL_STORAGE_KEYS.gender);
+
+  let missingSettings = "";
+  if(location && lat && long && timezone && gender) {
+    missingSettings = undefined;
+  }
+
+  if(!location) {
+    missingSettings += "Location ";
+  }
+
+  if(!lat) {
+    missingSettings += "Latitude ";
+  }
+
+  if(!long) {
+    missingSettings += "Longitude ";
+  }
+
+  if(!timezone) {
+    missingSettings += "Timezone ";
+  }
+
+  if(!gender) {
+    missingSettings += "Gender";
+  }
+
+  return missingSettings;
+}
