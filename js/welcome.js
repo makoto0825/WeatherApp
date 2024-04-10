@@ -303,7 +303,7 @@ function submitCity() {
 
   const cityName = `${selectedCity}, ${selectedProvince}, Canada`; //NOTE: Selection is limited to Canada only
 
-  localStorage.setItem(LOCAL_STORAGE_KEYS.city, selectedCity);
+  localStorage.setItem(LOCAL_STORAGE_KEYS.city, cityName);
   const cityNameElement = document.getElementById("js-selectedCityName");
   cityNameElement.innerHTML = cityName;
 
