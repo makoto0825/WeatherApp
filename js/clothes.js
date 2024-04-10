@@ -1,5 +1,5 @@
+import { LOCAL_STORAGE_KEYS } from "./common/constants.js";
 import { getWeatherImage } from "./weatherImage.js";
-
 //===================Function==============================================
 function updateClotheText(todayMaxTemp, gender) {
   const clothImageElement = document.getElementById("js-clothesImg");
@@ -47,9 +47,8 @@ function getToday() {
 }
 
 //天気の情報を取得する関数
-async function getWeather() {
-  const URL =
-    "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&daily=weather_code,temperature_2m_max,temperature_2m_min";
+async function getWeather(lat, long, timeZone) {
+  const URL = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&current=temperature_2m,weather_code&hourly=precipitation_probability,temperature_2m,weather_code&forecast_days=7&daily=weather_code,temperature_2m_max,precipitation_probability_max,precipitation_hours&timezone=${timeZone}`;
   try {
     const response = await fetch(URL);
     if (!response.ok) {
@@ -63,8 +62,14 @@ async function getWeather() {
 }
 
 //===================Program start==============================================
-//性別の情報を取得する関数
-let gender = "M"; // 初期の性別を設定
+//localStorageから緯度、経度、タイムゾーン、性別を取得する
+let gender = localStorage.getItem(LOCAL_STORAGE_KEYS.gender);
+const lat = localStorage.getItem(LOCAL_STORAGE_KEYS.lat);
+const long = localStorage.getItem(LOCAL_STORAGE_KEYS.long);
+let timeZone = localStorage.getItem(LOCAL_STORAGE_KEYS.timezone);
+timeZone = timeZone.replace("/", "%2F");
+const genderSwitch = document.getElementById("js-genderSwitch");
+genderSwitch.checked = gender === "F";
 
 //現在の日付を表示する
 document.addEventListener("DOMContentLoaded", () => {
@@ -82,13 +87,12 @@ const clothesDescriptions = {
 
 document.addEventListener("DOMContentLoaded", () => {
   (async () => {
-    const WeatherInfo = await getWeather();
+    const WeatherInfo = await getWeather(lat, long, timeZone);
     const todayWeather = WeatherInfo.daily.weather_code[0];
     const todayMaxTemp = WeatherInfo.daily.temperature_2m_max[0];
     const temperature = todayMaxTemp; // 気温
 
     //性別の切り替え
-    const genderSwitch = document.getElementById("js-genderSwitch");
     genderSwitch.addEventListener("change", () => {
       if (genderSwitch.checked) {
         gender = "F"; // 女性
