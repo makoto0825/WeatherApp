@@ -47,8 +47,43 @@
         <div>
           <section class="setting_section">
             <h3 class="setting_label">Location</h3>
-            <p id="js-location">Toronto, Ontario, Canada</p>
-            <button class="text-button">Change</button>
+            <div id="js-locationMenu" class="location_menu selected">
+              <div class="location_selected">
+                <p id="js-selectedCityName">Toronto, Ontario, Canada</p>
+                <button
+                  id="js-reselectCity"
+                  class="text-button location_change"
+                >
+                  Change
+                </button>
+              </div>
+              <div class="location_selecting">
+                <div class="location_button_area">
+                  <button
+                    id="js-getLocation"
+                    class="button white"
+                    type="button"
+                  >
+                    Get My Location
+                  </button>
+                  <div class="tooltip_wrapper">
+                    <div class="icon-button">?</div>
+                    <div class="tooltip">
+                      <p>
+                        Click "Allow Location Access" to get your location or
+                        enter it manually.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <p class="location_text">
+                  or
+                  <button id="js-openCitySelectModal" class="text-button">
+                    Select Manually
+                  </button>
+                </p>
+              </div>
+            </div>
           </section>
           <section class="setting_section">
             <h3 class="flex setting_label">
@@ -86,6 +121,56 @@
     <footer class="footer">
       <p>&copy;WeatherApp</p>
     </footer>
+    <div id="js-locationLoading" class="loading_modal">
+      <div class="content_inprogress">
+        <p>Loading location...</p>
+        <div class="loader"></div>
+      </div>
+      <div class="content_done">
+        <p>Success!!</p>
+      </div>
+    </div>
+    <div id="js-citySelectModal" class="modal">
+      <div class="modal_content">
+        <div class="modal_header">
+          <h2 class="modal_title font-title">Select Your City</h2>
+          <button
+            id="js-closeCitySelectModal"
+            class="modal_close"
+            type="button"
+          >
+            &times;
+          </button>
+        </div>
+        <div class="modal_body">
+          <div class="form">
+            <label class="form_label">
+              <span>Province</span>
+              <select
+                name="province"
+                id="js-provinceList"
+                class="form_select"
+              ></select>
+            </label>
+            <label class="form_label">
+              <span>City</span>
+              <select name="city" id="js-cityList" class="form_select"></select>
+            </label>
+            <button
+              type="button"
+              id="js-submitCity"
+              class="button primary form_button"
+            >
+              Select
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrkeYzcyAiLO6vdS56EXGsTa25O77xtoo"
+    ></script>
     <script type="module" src="../js/settings.js"></script>
   </body>
 </html>

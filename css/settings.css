@@ -206,7 +206,7 @@ button {
 }
 
 .setting_section {
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 
 .tooltip_wrapper {
@@ -245,4 +245,166 @@ button {
 .footer {
   text-align: center;
   padding: 16px;
+}
+
+.location_menu {
+  position: relative;
+}
+
+.location_selected {
+  display: none;
+}
+
+.location_menu.selected .location_selected {
+  position: absolute;
+  inset: 0;
+  font-weight: bold;
+  display: block;
+}
+
+.location_menu.selected .location_selecting {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.location_button_area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+/* Modal */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+  pointer-events: none;
+}
+
+.modal.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal_content {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.32);
+  backdrop-filter: blur(8px);
+  min-width: 320px;
+  max-width: 800px;
+  width: 80%;
+}
+
+.modal_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px 16px;
+}
+
+.modal_close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 40px;
+  color: #372f2f;
+}
+
+.modal_body {
+  padding: 0 32px 32px;
+}
+
+.form_label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.form_button {
+  display: block;
+  margin: 24px 0 0 auto;
+}
+
+/* loader */
+.loader {
+  width: 32px;
+  --b: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 1px;
+  background: conic-gradient(#0000 10%, #9969ed) content-box;
+  -webkit-mask: repeating-conic-gradient(
+      #0000 0deg,
+      #000 1deg 20deg,
+      #0000 21deg 36deg
+    ),
+    radial-gradient(
+      farthest-side,
+      #0000 calc(100% - var(--b) - 1px),
+      #000 calc(100% - var(--b))
+    );
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
+  animation: loader 1s infinite steps(10);
+}
+
+@keyframes loader {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.loading_modal {
+  opacity: 0;
+  pointer-events: none;
+  width: 280px;
+  height: 160px;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 16px;
+  padding: 40px;
+  background-color: #fff;
+  transition: opacity 0.2s ease-out;
+}
+
+.loading_modal.visible {
+  opacity: 1;
+}
+
+.loading_modal.done {
+  transition-delay: 2s;
+  opacity: 0;
+}
+
+.content_inprogress {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.loading_modal.done .content_inprogress {
+  display: none;
+}
+
+.loading_modal .content_done {
+  display: none;
+}
+
+.loading_modal.done .content_done {
+  display: block;
 }
