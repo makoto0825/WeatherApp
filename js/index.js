@@ -79,15 +79,15 @@ function getToday() {
       const temperatureText = `${todayTempMax}°C / ${todayTempMin}°C<br> ${((todayTempMax * 9/5) + 32).toFixed(1)}°F / ${((todayTempMin * 9/5) + 32).toFixed(1)}°F`;
       todayTemperatureElement.innerHTML = temperatureText;
       
-      //Get value of Morning 6AM, Afternoon 12PM, Evening 18PM, Overnight 24PM
+      //Get value of Morning 6AM, Afternoon 12PM, Evening 18PM, Night 21PM
       const hourlyTemperatures = WeatherInfo.hourly.temperature_2m;
       const hourlyWeatherCodes = WeatherInfo.hourly.weather_code;
       const hourlyPrecipitation = WeatherInfo.hourly.precipitation_probability;
       
-      const hourlyWeatherCodesValues = [hourlyWeatherCodes[5], hourlyWeatherCodes[11], hourlyWeatherCodes[17], hourlyWeatherCodes[23]];
-      const hourlyPrecipitationValues = [hourlyPrecipitation[5], hourlyPrecipitation[11], hourlyPrecipitation[17], hourlyPrecipitation[23]];
-      const temperatureValues = [hourlyTemperatures[5], hourlyTemperatures[11], hourlyTemperatures[17], hourlyTemperatures[23]];
-      const timesOfDay = ["Morning", "Afternoon", "Evening", "Overnight"];
+      const hourlyWeatherCodesValues = [hourlyWeatherCodes[6], hourlyWeatherCodes[12], hourlyWeatherCodes[18], hourlyWeatherCodes[21]];
+      const hourlyPrecipitationValues = [hourlyPrecipitation[6], hourlyPrecipitation[12], hourlyPrecipitation[18], hourlyPrecipitation[21]];
+      const temperatureValues = [hourlyTemperatures[6], hourlyTemperatures[12], hourlyTemperatures[18], hourlyTemperatures[21]];
+      const timesOfDay = ["Morning", "Afternoon", "Evening", "Night"];
       const timeOfDayElements = document.querySelectorAll(".js-timeOfDay");
       const tempCelsiusElements = document.querySelectorAll(".js-tempCelsius");
       const tempFahrenheitElements = document.querySelectorAll(".js-tempFahrenheit");
