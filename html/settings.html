@@ -47,7 +47,7 @@
         <div>
           <section class="setting_section">
             <h3 class="setting_label">Location</h3>
-            <p>Toronto, Ontario, Canada</p>
+            <p id="js-location">Toronto, Ontario, Canada</p>
             <button class="text-button">Change</button>
           </section>
           <section class="setting_section">
@@ -66,7 +66,11 @@
             <div class="slide_switch switch">
               <span class="switch_text">Male</span>
               <label class="switch_button">
-                <input type="checkbox" class="switch_checkbox" />
+                <input
+                  id="js-genderSwitch"
+                  type="checkbox"
+                  class="switch_checkbox"
+                />
                 <span class="switch_slider"></span>
               </label>
               <span class="switch_text">Female</span>
@@ -82,5 +86,6 @@
     <footer class="footer">
       <p>&copy;WeatherApp</p>
     </footer>
+    <script type="module" src="../js/settings.js"></script>
   </body>
 </html>
