@@ -172,6 +172,7 @@ h6 {
 @media screen and (max-width: 600px) {
     .weather-item {
         margin-bottom: 20px;
+        padding: 8px;
     }
     
     .weather-widget{
@@ -219,7 +220,7 @@ h6 {
     }
 
     .weather-timeline{
-        font-size: 0.8em;
+        font-size: 0.7em;
     }
     .weather-item :nth-child(4) img{
         width: 45px;
