@@ -112,8 +112,17 @@ h6 {
 
   .detailed-weather-item {
     text-align: center;
-    padding: 8px;
+    padding: 2px;
     font-size: 0.8em;
+  }
+
+  .detailed-hourly-forcast{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .detailed-weather-item p {
+  font-size: 10px;
   }
 
   .detailed-weather-daily-forcast-content table {
