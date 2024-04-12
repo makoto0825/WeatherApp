@@ -94,7 +94,7 @@ a {
     border-radius: 50%;
     background-color: #fff;
     cursor: pointer;
-    position: absolute;
+    position: fixed;
   }
 
   .sp_nav_trigger:checked + label {
